@@ -8,10 +8,10 @@ ODIR = obj
 .PHONY: clean
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $(ODIR)/$@ $(CFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $(ODIR)/$@
 
 all: $(OBJ)
-	@$(CC) $(CFLAGS) -o program $(patsubst %,$(ODIR)/%, $(OBJ))
+	$(CC) $(CFLAGS) -o program $(patsubst %,$(ODIR)/%, $(OBJ))
 
 clean:
-	rm -f $(ODIR)/$(OBJ) program
+	rm -f $(patsubst %,$(ODIR)/%, $(OBJ)) program

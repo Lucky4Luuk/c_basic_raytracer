@@ -1,7 +1,7 @@
 #ifndef _INCLUDE_RAYTRACING_H_
 #define _INCLUDE_RAYTRACING_H_
 
-#include "lib/mathc.h"
+#include "mathc.h"
 #include "scene.h"
 
 #define EPSILON 0.01

@@ -1,6 +1,14 @@
 #include <stdio.h>
 
-#include "lib/mathc.h"
+// #define MATHC_USE_FLOATING_POINT
+// #define MATHC_USE_INT
+
+#define MATHC_USE_INT32
+#define MATHC_USE_SINGLE_FLOATING_POINT
+
+// #define MATHC_USE_STRUCT_FUNCTIONS
+
+#include "mathc.h"
 #include "display.h"
 
 #include "raytracing.h"
