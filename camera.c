@@ -1,40 +1,33 @@
 #include "camera.h"
 
 struct Ray camera_to_ray(mfloat_t* uv, mfloat_t aspect, struct Camera camera) {
-    mfloat_t proj_mat[MAT4_SIZE];
-    mfloat_t view_mat[MAT4_SIZE];
-    mfloat_t invprojview[MAT4_SIZE];
+    /*
+    float imageAspectRatio = imageWidth / (float)imageHeight; // assuming width > height
+    float Px = (2 * ((x + 0.5) / imageWidth) - 1) * tan(fov / 2 * M_PI / 180) * imageAspectRatio;
+    float Py = (1 - 2 * ((y + 0.5) / imageHeight) * tan(fov / 2 * M_PI / 180);
+    Vec3f rayOrigin(0);
+    Vec3f rayDirection = Vec3f(Px, Py, -1) - rayOrigin; // note that this just equal to Vec3f(Px, Py, -1);
+    rayDirection = normalize(rayDirection); // it's a direction so don't forget to normalize
+    */
 
-    mfloat_t near = 0.02;
-    mfloat_t far = 1024.0;
+    mfloat_t adjusted_uv[VEC2_SIZE];
+    adjusted_uv[0] = uv[0] * 2.0 - 1.0;
+    adjusted_uv[1] = 1.0 - uv[1] * 2.0;
 
-    mat4_perspective(proj_mat, to_radians(camera.fov), aspect, near, far);
-
-    mfloat_t up[VEC3_SIZE] = {0.0, 1.0, 0.0};
-    mat4_look_at(view_mat, camera.pos, camera.dir, up);
-
-    mat4_multiply(invprojview, proj_mat, view_mat);
-    mat4_inverse(invprojview, invprojview);
-
-    vec2_multiply_f(uv, uv, 2.0);
-    vec2_subtract_f(uv, uv, 1.0);
-    mfloat_t adjusted_pos[VEC4_SIZE]     = {uv[0], uv[1], -1.0, 1.0};
-    vec2_multiply_f(uv, uv, (far - near));
-    mfloat_t adjusted_pos_alt[VEC4_SIZE] = {uv[0], uv[1], far + near, far - near};
+    mfloat_t px = adjusted_uv[0] * tan(to_radians(camera.fov)) * aspect;
+    mfloat_t py = adjusted_uv[1] * tan(to_radians(camera.fov));
 
     struct Ray ray;
-    //Technically I have to determine this based on my near value
-    //Formula: (invprojview * adjusted_pos * near).xyz
     ray.ro[0] = camera.pos[0];
     ray.ro[1] = camera.pos[1];
     ray.ro[2] = camera.pos[2];
 
-    mfloat_t tmp[VEC4_SIZE];
-    vec4_multiply_mat4(tmp, adjusted_pos_alt, invprojview);
+    ray.rd[0] = px;
+    ray.rd[1] = py;
+    ray.rd[2] = 1.0;
 
-    ray.rd[0] = tmp[0];
-    ray.rd[1] = tmp[1];
-    ray.rd[2] = tmp[2];
+    // vec3_subtract(ray.rd, ray.rd, camera.pos);
+    // vec3_normalize(ray.rd, ray.rd);
 
     return ray;
 }
