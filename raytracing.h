@@ -4,7 +4,10 @@
 #include "mathc.h"
 #include "scene.h"
 
-#define EPSILON 0.01
+struct Ray {
+	mfloat_t ro[VEC3_SIZE];
+	mfloat_t rd[VEC3_SIZE];
+};
 
 struct Rayhit {
 	bool hit;
@@ -13,6 +16,6 @@ struct Rayhit {
 	mfloat_t normal[VEC3_SIZE];
 };
 
-struct Rayhit trace(mfloat_t* ro, mfloat_t* rd, int max_steps);
+struct Rayhit trace(struct Ray ray, int max_steps);
 
 #endif
