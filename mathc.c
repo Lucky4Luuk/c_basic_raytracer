@@ -33,7 +33,7 @@ mint_t clampi(mint_t value, mint_t min, mint_t max)
 #endif
 
 #if defined(MATHC_USE_FLOATING_POINT)
-bool nearly_equal(mfloat_t a, mfloat_t b, mfloat_t epsilon)
+bool nearly_equal(double a, double b, double epsilon)
 {
 	bool result = false;
 	if (a == b) {
@@ -44,17 +44,17 @@ bool nearly_equal(mfloat_t a, mfloat_t b, mfloat_t epsilon)
 	return result;
 }
 
-mfloat_t to_radians(mfloat_t degrees)
+double to_radians(double degrees)
 {
 	return MRADIANS(degrees);
 }
 
-mfloat_t to_degrees(mfloat_t radians)
+double to_degrees(double radians)
 {
 	return MDEGREES(radians);
 }
 
-mfloat_t clampf(mfloat_t value, mfloat_t min, mfloat_t max)
+double clampf(double value, double min, double max)
 {
 	if (value < min) {
 		value = min;
@@ -91,7 +91,7 @@ mint_t *vec2i_assign(mint_t *result, mint_t *v0)
 }
 
 #if defined(MATHC_USE_FLOATING_POINT)
-mint_t *vec2i_assign_vec2(mint_t *result, mfloat_t *v0)
+mint_t *vec2i_assign_vec2(mint_t *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -295,7 +295,7 @@ mint_t *vec3i_assign(mint_t *result, mint_t *v0)
 }
 
 #if defined(MATHC_USE_FLOATING_POINT)
-mint_t *vec3i_assign_vec3(mint_t *result, mfloat_t *v0)
+mint_t *vec3i_assign_vec3(mint_t *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -539,7 +539,7 @@ mint_t *vec4i_assign(mint_t *result, mint_t *v0)
 }
 
 #if defined(MATHC_USE_FLOATING_POINT)
-mint_t *vec4i_assign_vec4(mint_t *result, mfloat_t *v0)
+mint_t *vec4i_assign_vec4(mint_t *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -779,24 +779,24 @@ mint_t *vec4i_clamp(mint_t *result, mint_t *v0, mint_t *v1, mint_t *v2)
 #endif
 
 #if defined(MATHC_USE_FLOATING_POINT)
-bool vec2_is_zero(mfloat_t *v0)
+bool vec2_is_zero(double *v0)
 {
 	return MFABS(v0[0]) < MFLT_EPSILON && MFABS(v0[1]) < MFLT_EPSILON;
 }
 
-bool vec2_is_equal(mfloat_t *v0, mfloat_t *v1)
+bool vec2_is_equal(double *v0, double *v1)
 {
 	return MFABS(v0[0] - v1[0]) < MFLT_EPSILON && MFABS(v0[1] - v1[1]) < MFLT_EPSILON;
 }
 
-mfloat_t *vec2(mfloat_t *result, mfloat_t x, mfloat_t y)
+double *vec2(double *result, double x, double y)
 {
 	result[0] = x;
 	result[1] = y;
 	return result;
 }
 
-mfloat_t *vec2_assign(mfloat_t *result, mfloat_t *v0)
+double *vec2_assign(double *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -804,7 +804,7 @@ mfloat_t *vec2_assign(mfloat_t *result, mfloat_t *v0)
 }
 
 #if defined(MATHC_USE_INT)
-mfloat_t *vec2_assign_vec2i(mfloat_t *result, mint_t *v0)
+double *vec2_assign_vec2i(double *result, mint_t *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -812,21 +812,21 @@ mfloat_t *vec2_assign_vec2i(mfloat_t *result, mint_t *v0)
 }
 #endif
 
-mfloat_t *vec2_zero(mfloat_t *result)
+double *vec2_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
 	return result;
 }
 
-mfloat_t *vec2_one(mfloat_t *result)
+double *vec2_one(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(1.0);
 	return result;
 }
 
-mfloat_t *vec2_sign(mfloat_t *result, mfloat_t *v0)
+double *vec2_sign(double *result, double *v0)
 {
 	if (v0[0] > MFLOAT_C(0.0)) {
 		result[0] = MFLOAT_C(1.0);
@@ -845,223 +845,223 @@ mfloat_t *vec2_sign(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec2_add(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_add(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] + v1[0];
 	result[1] = v0[1] + v1[1];
 	return result;
 }
 
-mfloat_t *vec2_add_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_add_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] + f;
 	result[1] = v0[1] + f;
 	return result;
 }
 
-mfloat_t *vec2_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_subtract(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] - v1[0];
 	result[1] = v0[1] - v1[1];
 	return result;
 }
 
-mfloat_t *vec2_subtract_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_subtract_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] - f;
 	result[1] = v0[1] - f;
 	return result;
 }
 
-mfloat_t *vec2_multiply(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_multiply(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] * v1[0];
 	result[1] = v0[1] * v1[1];
 	return result;
 }
 
-mfloat_t *vec2_multiply_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_multiply_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] * f;
 	result[1] = v0[1] * f;
 	return result;
 }
 
-mfloat_t *vec2_multiply_mat2(mfloat_t *result, mfloat_t *v0, mfloat_t *m0)
+double *vec2_multiply_mat2(double *result, double *v0, double *m0)
 {
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[1];
+	double x = v0[0];
+	double y = v0[1];
 	result[0] = m0[0] * x + m0[2] * y;
 	result[1] = m0[1] * x + m0[3] * y;
 	return result;
 }
 
-mfloat_t *vec2_divide(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_divide(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] / v1[0];
 	result[1] = v0[1] / v1[1];
 	return result;
 }
 
-mfloat_t *vec2_divide_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_divide_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] / f;
 	result[1] = v0[1] / f;
 	return result;
 }
 
-mfloat_t *vec2_snap(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_snap(double *result, double *v0, double *v1)
 {
 	result[0] = MFLOOR(v0[0] / v1[0]) * v1[0];
 	result[1] = MFLOOR(v0[1] / v1[1]) * v1[1];
 	return result;
 }
 
-mfloat_t *vec2_snap_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_snap_f(double *result, double *v0, double f)
 {
 	result[0] = MFLOOR(v0[0] / f) * f;
 	result[1] = MFLOOR(v0[1] / f) * f;
 	return result;
 }
 
-mfloat_t *vec2_negative(mfloat_t *result, mfloat_t *v0)
+double *vec2_negative(double *result, double *v0)
 {
 	result[0] = -v0[0];
 	result[1] = -v0[1];
 	return result;
 }
 
-mfloat_t *vec2_abs(mfloat_t *result, mfloat_t *v0)
+double *vec2_abs(double *result, double *v0)
 {
 	result[0] = MFABS(v0[0]);
 	result[1] = MFABS(v0[1]);
 	return result;
 }
 
-mfloat_t *vec2_floor(mfloat_t *result, mfloat_t *v0)
+double *vec2_floor(double *result, double *v0)
 {
 	result[0] = MFLOOR(v0[0]);
 	result[1] = MFLOOR(v0[1]);
 	return result;
 }
 
-mfloat_t *vec2_ceil(mfloat_t *result, mfloat_t *v0)
+double *vec2_ceil(double *result, double *v0)
 {
 	result[0] = MCEIL(v0[0]);
 	result[1] = MCEIL(v0[1]);
 	return result;
 }
 
-mfloat_t *vec2_round(mfloat_t *result, mfloat_t *v0)
+double *vec2_round(double *result, double *v0)
 {
 	result[0] = MROUND(v0[0]);
 	result[1] = MROUND(v0[1]);
 	return result;
 }
 
-mfloat_t *vec2_max(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_max(double *result, double *v0, double *v1)
 {
 	result[0] = MFMAX(v0[0], v1[0]);
 	result[1] = MFMAX(v0[1], v1[1]);
 	return result;
 }
 
-mfloat_t *vec2_min(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_min(double *result, double *v0, double *v1)
 {
 	result[0] = MFMIN(v0[0], v1[0]);
 	result[1] = MFMIN(v0[1], v1[1]);
 	return result;
 }
 
-mfloat_t *vec2_clamp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2)
+double *vec2_clamp(double *result, double *v0, double *v1, double *v2)
 {
 	vec2_min(result, v0, v1);
 	vec2_max(result, v0, v2);
 	return result;
 }
 
-mfloat_t *vec2_normalize(mfloat_t *result, mfloat_t *v0)
+double *vec2_normalize(double *result, double *v0)
 {
-	mfloat_t l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1]);
+	double l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1]);
 	result[0] = v0[0] / l;
 	result[1] = v0[1] / l;
 	return result;
 }
 
-mfloat_t vec2_dot(mfloat_t *v0, mfloat_t *v1)
+double vec2_dot(double *v0, double *v1)
 {
 	return v0[0] * v1[0] + v0[1] * v1[1];
 }
 
-mfloat_t *vec2_project(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec2_project(double *result, double *v0, double *v1)
 {
-	mfloat_t d = vec2_dot(v1, v1);
-	mfloat_t s = vec2_dot(v0, v1) / d;
+	double d = vec2_dot(v1, v1);
+	double s = vec2_dot(v0, v1) / d;
 	result[0] = v1[0] * s;
 	result[1] = v1[1] * s;
 	return result;
 }
 
-mfloat_t *vec2_slide(mfloat_t *result, mfloat_t *v0, mfloat_t *normal)
+double *vec2_slide(double *result, double *v0, double *normal)
 {
-	mfloat_t d = vec2_dot(v0, normal);
+	double d = vec2_dot(v0, normal);
 	result[0] = v0[0] - normal[0] * d;
 	result[1] = v0[1] - normal[1] * d;
 	return result;
 }
 
-mfloat_t *vec2_reflect(mfloat_t *result, mfloat_t *v0, mfloat_t *normal)
+double *vec2_reflect(double *result, double *v0, double *normal)
 {
-	mfloat_t d = MFLOAT_C(2.0) * vec2_dot(v0, normal);
+	double d = MFLOAT_C(2.0) * vec2_dot(v0, normal);
 	result[0] = normal[0] * d - v0[0];
 	result[1] = normal[1] * d - v0[1];
 	return result;
 }
 
-mfloat_t *vec2_tangent(mfloat_t *result, mfloat_t *v0)
+double *vec2_tangent(double *result, double *v0)
 {
-	mfloat_t a0 = v0[0];
-	mfloat_t a1 = v0[1];
+	double a0 = v0[0];
+	double a1 = v0[1];
 	result[0] = a1;
 	result[1] = -a0;
 	return result;
 }
 
-mfloat_t *vec2_rotate(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec2_rotate(double *result, double *v0, double f)
 {
-	mfloat_t cs = MCOS(f);
-	mfloat_t sn = MSIN(f);
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[1];
+	double cs = MCOS(f);
+	double sn = MSIN(f);
+	double x = v0[0];
+	double y = v0[1];
 	result[0] = x * cs - y * sn;
 	result[1] = x * sn + y * cs;
 	return result;
 }
 
-mfloat_t *vec2_lerp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t f)
+double *vec2_lerp(double *result, double *v0, double *v1, double f)
 {
 	result[0] = v0[0] + (v1[0] - v0[0]) * f;
 	result[1] = v0[1] + (v1[1] - v0[1]) * f;
 	return result;
 }
 
-mfloat_t *vec2_bezier3(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2, mfloat_t f)
+double *vec2_bezier3(double *result, double *v0, double *v1, double *v2, double f)
 {
-	mfloat_t tmp0[VEC2_SIZE];
-	mfloat_t tmp1[VEC2_SIZE];
+	double tmp0[VEC2_SIZE];
+	double tmp1[VEC2_SIZE];
 	vec2_lerp(tmp0, v0, v1, f);
 	vec2_lerp(tmp1, v1, v2, f);
 	vec2_lerp(result, tmp0, tmp1, f);
 	return result;
 }
 
-mfloat_t *vec2_bezier4(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2, mfloat_t *v3, mfloat_t f)
+double *vec2_bezier4(double *result, double *v0, double *v1, double *v2, double *v3, double f)
 {
-	mfloat_t tmp0[VEC2_SIZE];
-	mfloat_t tmp1[VEC2_SIZE];
-	mfloat_t tmp2[VEC2_SIZE];
-	mfloat_t tmp3[VEC2_SIZE];
-	mfloat_t tmp4[VEC2_SIZE];
+	double tmp0[VEC2_SIZE];
+	double tmp1[VEC2_SIZE];
+	double tmp2[VEC2_SIZE];
+	double tmp3[VEC2_SIZE];
+	double tmp4[VEC2_SIZE];
 	vec2_lerp(tmp0, v0, v1, f);
 	vec2_lerp(tmp1, v1, v2, f);
 	vec2_lerp(tmp2, v2, v3, f);
@@ -1071,40 +1071,40 @@ mfloat_t *vec2_bezier4(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v
 	return result;
 }
 
-mfloat_t vec2_angle(mfloat_t *v0)
+double vec2_angle(double *v0)
 {
 	return MATAN2(v0[1], v0[0]);
 }
 
-mfloat_t vec2_length(mfloat_t *v0)
+double vec2_length(double *v0)
 {
 	return MSQRT(v0[0] * v0[0] + v0[1] * v0[1]);
 }
 
-mfloat_t vec2_length_squared(mfloat_t *v0)
+double vec2_length_squared(double *v0)
 {
 	return v0[0] * v0[0] + v0[1] * v0[1];
 }
 
-mfloat_t vec2_distance(mfloat_t *v0, mfloat_t *v1)
+double vec2_distance(double *v0, double *v1)
 {
 	return MSQRT((v0[0] - v1[0]) * (v0[0] - v1[0]) + (v0[1] - v1[1]) * (v0[1] - v1[1]));
 }
 
-mfloat_t vec2_distance_squared(mfloat_t *v0, mfloat_t *v1)
+double vec2_distance_squared(double *v0, double *v1)
 {
 	return (v0[0] - v1[0]) * (v0[0] - v1[0]) + (v0[1] - v1[1]) * (v0[1] - v1[1]);
 }
 
-bool vec2_linear_independent(mfloat_t *v0, mfloat_t *v1)
+bool vec2_linear_independent(double *v0, double *v1)
 {
 	return (v0[0] * v1[1] - v1[0] * v0[1]) != 0;
 }
 
-mfloat_t** vec2_orthonormalization(mfloat_t result[2][2], mfloat_t basis[2][2])
+double** vec2_orthonormalization(double result[2][2], double basis[2][2])
 {
-	mfloat_t v0[2];
-	mfloat_t v1[2];
+	double v0[2];
+	double v1[2];
 
 	for(int32_t i = 0; i < 2; ++i) {
 		v0[i] = basis[0][i];
@@ -1112,12 +1112,12 @@ mfloat_t** vec2_orthonormalization(mfloat_t result[2][2], mfloat_t basis[2][2])
 	}
 
 	if (!vec2_linear_independent(v0, v1)) {
-		return (mfloat_t**)result;
+		return (double**)result;
 	}
 
-	mfloat_t proju1[2];
-	mfloat_t u0[2];
-	mfloat_t u1[2];
+	double proju1[2];
+	double u0[2];
+	double u1[2];
 
 	for(int32_t i = 0; i < 2; ++i) {
 		u0[i] = v0[i];
@@ -1128,20 +1128,20 @@ mfloat_t** vec2_orthonormalization(mfloat_t result[2][2], mfloat_t basis[2][2])
 	vec2_normalize(result[0], u0);
 	vec2_normalize(result[1], u1);
 
-	return (mfloat_t**)result;
+	return (double**)result;
 }
 
-bool vec3_is_zero(mfloat_t *v0)
+bool vec3_is_zero(double *v0)
 {
 	return MFABS(v0[0]) < MFLT_EPSILON && MFABS(v0[1]) < MFLT_EPSILON && MFABS(v0[2]) < MFLT_EPSILON;
 }
 
-bool vec3_is_equal(mfloat_t *v0, mfloat_t *v1)
+bool vec3_is_equal(double *v0, double *v1)
 {
 	return MFABS(v0[0] - v1[0]) < MFLT_EPSILON && MFABS(v0[1] - v1[1]) < MFLT_EPSILON && MFABS(v0[2] - v1[2]) < MFLT_EPSILON;
 }
 
-mfloat_t *vec3(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z)
+double *vec3(double *result, double x, double y, double z)
 {
 	result[0] = x;
 	result[1] = y;
@@ -1149,7 +1149,7 @@ mfloat_t *vec3(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z)
 	return result;
 }
 
-mfloat_t *vec3_assign(mfloat_t *result, mfloat_t *v0)
+double *vec3_assign(double *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -1158,7 +1158,7 @@ mfloat_t *vec3_assign(mfloat_t *result, mfloat_t *v0)
 }
 
 #if defined(MATHC_USE_INT)
-mfloat_t *vec3_assign_vec3i(mfloat_t *result, mint_t *v0)
+double *vec3_assign_vec3i(double *result, mint_t *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -1167,7 +1167,7 @@ mfloat_t *vec3_assign_vec3i(mfloat_t *result, mint_t *v0)
 }
 #endif
 
-mfloat_t *vec3_zero(mfloat_t *result)
+double *vec3_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -1175,7 +1175,7 @@ mfloat_t *vec3_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *vec3_one(mfloat_t *result)
+double *vec3_one(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(1.0);
@@ -1183,7 +1183,7 @@ mfloat_t *vec3_one(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *vec3_sign(mfloat_t *result, mfloat_t *v0)
+double *vec3_sign(double *result, double *v0)
 {
 	if (v0[0] > MFLOAT_C(0.0)) {
 		result[0] = MFLOAT_C(1.0);
@@ -1209,7 +1209,7 @@ mfloat_t *vec3_sign(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_add(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_add(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] + v1[0];
 	result[1] = v0[1] + v1[1];
@@ -1217,7 +1217,7 @@ mfloat_t *vec3_add(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_add_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec3_add_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] + f;
 	result[1] = v0[1] + f;
@@ -1225,7 +1225,7 @@ mfloat_t *vec3_add_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_subtract(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] - v1[0];
 	result[1] = v0[1] - v1[1];
@@ -1233,7 +1233,7 @@ mfloat_t *vec3_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_subtract_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec3_subtract_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] - f;
 	result[1] = v0[1] - f;
@@ -1241,7 +1241,7 @@ mfloat_t *vec3_subtract_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_multiply(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_multiply(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] * v1[0];
 	result[1] = v0[1] * v1[1];
@@ -1249,7 +1249,7 @@ mfloat_t *vec3_multiply(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_multiply_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec3_multiply_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] * f;
 	result[1] = v0[1] * f;
@@ -1257,18 +1257,18 @@ mfloat_t *vec3_multiply_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_multiply_mat3(mfloat_t *result, mfloat_t *v0, mfloat_t *m0)
+double *vec3_multiply_mat3(double *result, double *v0, double *m0)
 {
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[1];
-	mfloat_t z = v0[2];
+	double x = v0[0];
+	double y = v0[1];
+	double z = v0[2];
 	result[0] = m0[0] * x + m0[3] * y + m0[6] * z;
 	result[1] = m0[1] * x + m0[4] * y + m0[7] * z;
 	result[2] = m0[2] * x + m0[5] * y + m0[8] * z;
 	return result;
 }
 
-mfloat_t *vec3_divide(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_divide(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] / v1[0];
 	result[1] = v0[1] / v1[1];
@@ -1276,7 +1276,7 @@ mfloat_t *vec3_divide(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_divide_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec3_divide_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] / f;
 	result[1] = v0[1] / f;
@@ -1284,7 +1284,7 @@ mfloat_t *vec3_divide_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_snap(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_snap(double *result, double *v0, double *v1)
 {
 	result[0] = MFLOOR(v0[0] / v1[0]) * v1[0];
 	result[1] = MFLOOR(v0[1] / v1[1]) * v1[1];
@@ -1292,7 +1292,7 @@ mfloat_t *vec3_snap(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_snap_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec3_snap_f(double *result, double *v0, double f)
 {
 	result[0] = MFLOOR(v0[0] / f) * f;
 	result[1] = MFLOOR(v0[1] / f) * f;
@@ -1300,7 +1300,7 @@ mfloat_t *vec3_snap_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_negative(mfloat_t *result, mfloat_t *v0)
+double *vec3_negative(double *result, double *v0)
 {
 	result[0] = -v0[0];
 	result[1] = -v0[1];
@@ -1308,7 +1308,7 @@ mfloat_t *vec3_negative(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_abs(mfloat_t *result, mfloat_t *v0)
+double *vec3_abs(double *result, double *v0)
 {
 	result[0] = MFABS(v0[0]);
 	result[1] = MFABS(v0[1]);
@@ -1316,7 +1316,7 @@ mfloat_t *vec3_abs(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_floor(mfloat_t *result, mfloat_t *v0)
+double *vec3_floor(double *result, double *v0)
 {
 	result[0] = MFLOOR(v0[0]);
 	result[1] = MFLOOR(v0[1]);
@@ -1324,7 +1324,7 @@ mfloat_t *vec3_floor(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_ceil(mfloat_t *result, mfloat_t *v0)
+double *vec3_ceil(double *result, double *v0)
 {
 	result[0] = MCEIL(v0[0]);
 	result[1] = MCEIL(v0[1]);
@@ -1332,7 +1332,7 @@ mfloat_t *vec3_ceil(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_round(mfloat_t *result, mfloat_t *v0)
+double *vec3_round(double *result, double *v0)
 {
 	result[0] = MROUND(v0[0]);
 	result[1] = MROUND(v0[1]);
@@ -1340,7 +1340,7 @@ mfloat_t *vec3_round(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec3_max(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_max(double *result, double *v0, double *v1)
 {
 	result[0] = MFMAX(v0[0], v1[0]);
 	result[1] = MFMAX(v0[1], v1[1]);
@@ -1348,7 +1348,7 @@ mfloat_t *vec3_max(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_min(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_min(double *result, double *v0, double *v1)
 {
 	result[0] = MFMIN(v0[0], v1[0]);
 	result[1] = MFMIN(v0[1], v1[1]);
@@ -1356,16 +1356,16 @@ mfloat_t *vec3_min(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_clamp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2)
+double *vec3_clamp(double *result, double *v0, double *v1, double *v2)
 {
 	vec3_min(result, v0, v1);
 	vec3_max(result, v0, v2);
 	return result;
 }
 
-mfloat_t *vec3_cross(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_cross(double *result, double *v0, double *v1)
 {
-	mfloat_t cross[VEC3_SIZE];
+	double cross[VEC3_SIZE];
 	cross[0] = v0[1] * v1[2] - v0[2] * v1[1];
 	cross[1] = v0[2] * v1[0] - v0[0] * v1[2];
 	cross[2] = v0[0] * v1[1] - v0[1] * v1[0];
@@ -1375,58 +1375,58 @@ mfloat_t *vec3_cross(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec3_normalize(mfloat_t *result, mfloat_t *v0)
+double *vec3_normalize(double *result, double *v0)
 {
-	mfloat_t l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2]);
+	double l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2]);
 	result[0] = v0[0] / l;
 	result[1] = v0[1] / l;
 	result[2] = v0[2] / l;
 	return result;
 }
 
-mfloat_t vec3_dot(mfloat_t *v0, mfloat_t *v1)
+double vec3_dot(double *v0, double *v1)
 {
 	return v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2];
 }
 
-mfloat_t *vec3_project(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec3_project(double *result, double *v0, double *v1)
 {
-	mfloat_t d = vec3_dot(v1, v1);
-	mfloat_t s = vec3_dot(v0, v1) / d;
+	double d = vec3_dot(v1, v1);
+	double s = vec3_dot(v0, v1) / d;
 	result[0] = v1[0] * s;
 	result[1] = v1[1] * s;
 	result[2] = v1[2] * s;
 	return result;
 }
 
-mfloat_t *vec3_slide(mfloat_t *result, mfloat_t *v0, mfloat_t *normal)
+double *vec3_slide(double *result, double *v0, double *normal)
 {
-	mfloat_t d = vec3_dot(v0, normal);
+	double d = vec3_dot(v0, normal);
 	result[0] = v0[0] - normal[0] * d;
 	result[1] = v0[1] - normal[1] * d;
 	result[2] = v0[2] - normal[2] * d;
 	return result;
 }
 
-mfloat_t *vec3_reflect(mfloat_t *result, mfloat_t *v0, mfloat_t *normal)
+double *vec3_reflect(double *result, double *v0, double *normal)
 {
-	mfloat_t d = MFLOAT_C(2.0) * vec3_dot(v0, normal);
+	double d = MFLOAT_C(2.0) * vec3_dot(v0, normal);
 	result[0] = normal[0] * d - v0[0];
 	result[1] = normal[1] * d - v0[1];
 	result[2] = normal[2] * d - v0[2];
 	return result;
 }
 
-mfloat_t *vec3_rotate(mfloat_t *result, mfloat_t *v0, mfloat_t *ra, mfloat_t f)
+double *vec3_rotate(double *result, double *v0, double *ra, double f)
 {
-	mfloat_t cs;
-	mfloat_t sn;
-	mfloat_t x;
-	mfloat_t y;
-	mfloat_t z;
-	mfloat_t rx;
-	mfloat_t ry;
-	mfloat_t rz;
+	double cs;
+	double sn;
+	double x;
+	double y;
+	double z;
+	double rx;
+	double ry;
+	double rz;
 	cs = MCOS(f);
 	sn = MSIN(f);
 	x = v0[0];
@@ -1442,7 +1442,7 @@ mfloat_t *vec3_rotate(mfloat_t *result, mfloat_t *v0, mfloat_t *ra, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_lerp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t f)
+double *vec3_lerp(double *result, double *v0, double *v1, double f)
 {
 	result[0] = v0[0] + (v1[0] - v0[0]) * f;
 	result[1] = v0[1] + (v1[1] - v0[1]) * f;
@@ -1450,23 +1450,23 @@ mfloat_t *vec3_lerp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec3_bezier3(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2, mfloat_t f)
+double *vec3_bezier3(double *result, double *v0, double *v1, double *v2, double f)
 {
-	mfloat_t tmp0[VEC3_SIZE];
-	mfloat_t tmp1[VEC3_SIZE];
+	double tmp0[VEC3_SIZE];
+	double tmp1[VEC3_SIZE];
 	vec3_lerp(tmp0, v0, v1, f);
 	vec3_lerp(tmp1, v1, v2, f);
 	vec3_lerp(result, tmp0, tmp1, f);
 	return result;
 }
 
-mfloat_t *vec3_bezier4(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2, mfloat_t *v3, mfloat_t f)
+double *vec3_bezier4(double *result, double *v0, double *v1, double *v2, double *v3, double f)
 {
-	mfloat_t tmp0[VEC3_SIZE];
-	mfloat_t tmp1[VEC3_SIZE];
-	mfloat_t tmp2[VEC3_SIZE];
-	mfloat_t tmp3[VEC3_SIZE];
-	mfloat_t tmp4[VEC3_SIZE];
+	double tmp0[VEC3_SIZE];
+	double tmp1[VEC3_SIZE];
+	double tmp2[VEC3_SIZE];
+	double tmp3[VEC3_SIZE];
+	double tmp4[VEC3_SIZE];
 	vec3_lerp(tmp0, v0, v1, f);
 	vec3_lerp(tmp1, v1, v2, f);
 	vec3_lerp(tmp2, v2, v3, f);
@@ -1476,38 +1476,38 @@ mfloat_t *vec3_bezier4(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v
 	return result;
 }
 
-mfloat_t vec3_length(mfloat_t *v0)
+double vec3_length(double *v0)
 {
 	return MSQRT(v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2]);
 }
 
-mfloat_t vec3_length_squared(mfloat_t *v0)
+double vec3_length_squared(double *v0)
 {
 	return v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2];
 }
 
-mfloat_t vec3_distance(mfloat_t *v0, mfloat_t *v1)
+double vec3_distance(double *v0, double *v1)
 {
 	return MSQRT((v0[0] - v1[0]) * (v0[0] - v1[0]) + (v0[1] - v1[1]) * (v0[1] - v1[1]) + (v0[2] - v1[2]) * (v0[2] - v1[2]));
 }
 
-mfloat_t vec3_distance_squared(mfloat_t *v0, mfloat_t *v1)
+double vec3_distance_squared(double *v0, double *v1)
 {
 	return (v0[0] - v1[0]) * (v0[0] - v1[0]) + (v0[1] - v1[1]) * (v0[1] - v1[1]) + (v0[2] - v1[2]) * (v0[2] - v1[2]);
 }
 
-bool vec3_linear_independent(mfloat_t *v0, mfloat_t *v1, mfloat_t *v2)
+bool vec3_linear_independent(double *v0, double *v1, double *v2)
 {
 	return v0[0] * v1[1] * v2[2] + v0[1] * v1[2] * v2[0] + v0[2] * v1[0] * v2[1]
 		- v0[2] * v1[1] * v2[0] - v0[1] * v1[0] * v2[2] - v0[0] * v1[2] * v2[1];
 }
 
-mfloat_t** vec3_orthonormalization(mfloat_t result[3][3], mfloat_t basis[3][3])
+double** vec3_orthonormalization(double result[3][3], double basis[3][3])
 {
-	mfloat_t v0[3];
-	mfloat_t v1[3];
-	mfloat_t v2[3];
-	
+	double v0[3];
+	double v1[3];
+	double v2[3];
+
 	for(int32_t i = 0; i < 3; ++i) {
 		v0[i] = basis[0][i];
 		v1[i] = basis[1][i];
@@ -1515,13 +1515,13 @@ mfloat_t** vec3_orthonormalization(mfloat_t result[3][3], mfloat_t basis[3][3])
 	}
 
 	if (!vec3_linear_independent(v0, v1, v2)) {
-		return (mfloat_t**)result;
+		return (double**)result;
 	}
 
-	mfloat_t proj[3];
-	mfloat_t u0[3];
-	mfloat_t u1[3];
-	mfloat_t u2[3];
+	double proj[3];
+	double u0[3];
+	double u1[3];
+	double u2[3];
 
 	for(int32_t i = 0; i < 3; ++i) {
 		u0[i] = v0[i];
@@ -1539,20 +1539,20 @@ mfloat_t** vec3_orthonormalization(mfloat_t result[3][3], mfloat_t basis[3][3])
 	vec3_normalize(result[1], u1);
 	vec3_normalize(result[2], u2);
 
-	return (mfloat_t**)result;
+	return (double**)result;
 }
 
-bool vec4_is_zero(mfloat_t *v0)
+bool vec4_is_zero(double *v0)
 {
 	return MFABS(v0[0]) < MFLT_EPSILON && MFABS(v0[1]) < MFLT_EPSILON && MFABS(v0[2]) < MFLT_EPSILON && MFABS(v0[3]) < MFLT_EPSILON;
 }
 
-bool vec4_is_equal(mfloat_t *v0, mfloat_t *v1)
+bool vec4_is_equal(double *v0, double *v1)
 {
 	return MFABS(v0[0] - v1[0]) < MFLT_EPSILON && MFABS(v0[1] - v1[1]) < MFLT_EPSILON && MFABS(v0[2] - v1[2]) < MFLT_EPSILON && MFABS(v0[3] - v1[3]) < MFLT_EPSILON;
 }
 
-mfloat_t *vec4(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+double *vec4(double *result, double x, double y, double z, double w)
 {
 	result[0] = x;
 	result[1] = y;
@@ -1561,7 +1561,7 @@ mfloat_t *vec4(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
 	return result;
 }
 
-mfloat_t *vec4_assign(mfloat_t *result, mfloat_t *v0)
+double *vec4_assign(double *result, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -1571,7 +1571,7 @@ mfloat_t *vec4_assign(mfloat_t *result, mfloat_t *v0)
 }
 
 #if defined(MATHC_USE_INT)
-mfloat_t *vec4_assign_vec4i(mfloat_t *result, mint_t *v0)
+double *vec4_assign_vec4i(double *result, mint_t *v0)
 {
 	result[0] = v0[0];
 	result[1] = v0[1];
@@ -1581,7 +1581,7 @@ mfloat_t *vec4_assign_vec4i(mfloat_t *result, mint_t *v0)
 }
 #endif
 
-mfloat_t *vec4_zero(mfloat_t *result)
+double *vec4_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -1590,7 +1590,7 @@ mfloat_t *vec4_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *vec4_one(mfloat_t *result)
+double *vec4_one(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(1.0);
@@ -1599,7 +1599,7 @@ mfloat_t *vec4_one(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *vec4_sign(mfloat_t *result, mfloat_t *v0)
+double *vec4_sign(double *result, double *v0)
 {
 	if (v0[0] > MFLOAT_C(0.0)) {
 		result[0] = MFLOAT_C(1.0);
@@ -1632,7 +1632,7 @@ mfloat_t *vec4_sign(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_add(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_add(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] + v1[0];
 	result[1] = v0[1] + v1[1];
@@ -1641,7 +1641,7 @@ mfloat_t *vec4_add(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_add_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec4_add_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] + f;
 	result[1] = v0[1] + f;
@@ -1650,7 +1650,7 @@ mfloat_t *vec4_add_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec4_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_subtract(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] - v1[0];
 	result[1] = v0[1] - v1[1];
@@ -1659,7 +1659,7 @@ mfloat_t *vec4_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_subtract_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec4_subtract_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] - f;
 	result[1] = v0[1] - f;
@@ -1668,7 +1668,7 @@ mfloat_t *vec4_subtract_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec4_multiply(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_multiply(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] * v1[0];
 	result[1] = v0[1] * v1[1];
@@ -1677,7 +1677,7 @@ mfloat_t *vec4_multiply(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_multiply_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec4_multiply_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] * f;
 	result[1] = v0[1] * f;
@@ -1686,12 +1686,12 @@ mfloat_t *vec4_multiply_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec4_multiply_mat4(mfloat_t *result, mfloat_t *v0, mfloat_t *m0)
+double *vec4_multiply_mat4(double *result, double *v0, double *m0)
 {
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[1];
-	mfloat_t z = v0[2];
-	mfloat_t w = v0[3];
+	double x = v0[0];
+	double y = v0[1];
+	double z = v0[2];
+	double w = v0[3];
 	result[0] = m0[0] * x + m0[4] * y + m0[8] * z + m0[12] * w;
 	result[1] = m0[1] * x + m0[5] * y + m0[9] * z + m0[13] * w;
 	result[2] = m0[2] * x + m0[6] * y + m0[10] * z + m0[14] * w;
@@ -1699,7 +1699,7 @@ mfloat_t *vec4_multiply_mat4(mfloat_t *result, mfloat_t *v0, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *vec4_divide(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_divide(double *result, double *v0, double *v1)
 {
 	result[0] = v0[0] / v1[0];
 	result[1] = v0[1] / v1[1];
@@ -1708,7 +1708,7 @@ mfloat_t *vec4_divide(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_divide_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec4_divide_f(double *result, double *v0, double f)
 {
 	result[0] = v0[0] / f;
 	result[1] = v0[1] / f;
@@ -1717,7 +1717,7 @@ mfloat_t *vec4_divide_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec4_snap(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_snap(double *result, double *v0, double *v1)
 {
 	result[0] = MFLOOR(v0[0] / v1[0]) * v1[0];
 	result[1] = MFLOOR(v0[1] / v1[1]) * v1[1];
@@ -1726,7 +1726,7 @@ mfloat_t *vec4_snap(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_snap_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *vec4_snap_f(double *result, double *v0, double f)
 {
 	result[0] = MFLOOR(v0[0] / f) * f;
 	result[1] = MFLOOR(v0[1] / f) * f;
@@ -1735,7 +1735,7 @@ mfloat_t *vec4_snap_f(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *vec4_negative(mfloat_t *result, mfloat_t *v0)
+double *vec4_negative(double *result, double *v0)
 {
 	result[0] = -v0[0];
 	result[1] = -v0[1];
@@ -1744,7 +1744,7 @@ mfloat_t *vec4_negative(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_abs(mfloat_t *result, mfloat_t *v0)
+double *vec4_abs(double *result, double *v0)
 {
 	result[0] = MFABS(v0[0]);
 	result[1] = MFABS(v0[1]);
@@ -1753,7 +1753,7 @@ mfloat_t *vec4_abs(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_floor(mfloat_t *result, mfloat_t *v0)
+double *vec4_floor(double *result, double *v0)
 {
 	result[0] = MFLOOR(v0[0]);
 	result[1] = MFLOOR(v0[1]);
@@ -1762,7 +1762,7 @@ mfloat_t *vec4_floor(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_ceil(mfloat_t *result, mfloat_t *v0)
+double *vec4_ceil(double *result, double *v0)
 {
 	result[0] = MCEIL(v0[0]);
 	result[1] = MCEIL(v0[1]);
@@ -1771,7 +1771,7 @@ mfloat_t *vec4_ceil(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_round(mfloat_t *result, mfloat_t *v0)
+double *vec4_round(double *result, double *v0)
 {
 	result[0] = MROUND(v0[0]);
 	result[1] = MROUND(v0[1]);
@@ -1780,7 +1780,7 @@ mfloat_t *vec4_round(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_max(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_max(double *result, double *v0, double *v1)
 {
 	result[0] = MFMAX(v0[0], v1[0]);
 	result[1] = MFMAX(v0[1], v1[1]);
@@ -1789,7 +1789,7 @@ mfloat_t *vec4_max(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_min(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *vec4_min(double *result, double *v0, double *v1)
 {
 	result[0] = MFMIN(v0[0], v1[0]);
 	result[1] = MFMIN(v0[1], v1[1]);
@@ -1798,16 +1798,16 @@ mfloat_t *vec4_min(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
 	return result;
 }
 
-mfloat_t *vec4_clamp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t *v2)
+double *vec4_clamp(double *result, double *v0, double *v1, double *v2)
 {
 	vec4_min(result, v0, v1);
 	vec4_max(result, v0, v2);
 	return result;
 }
 
-mfloat_t *vec4_normalize(mfloat_t *result, mfloat_t *v0)
+double *vec4_normalize(double *result, double *v0)
 {
-	mfloat_t l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2] + v0[3] * v0[3]);
+	double l = MSQRT(v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2] + v0[3] * v0[3]);
 	result[0] = v0[0] / l;
 	result[1] = v0[1] / l;
 	result[2] = v0[2] / l;
@@ -1815,7 +1815,7 @@ mfloat_t *vec4_normalize(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *vec4_lerp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t f)
+double *vec4_lerp(double *result, double *v0, double *v1, double f)
 {
 	result[0] = v0[0] + (v1[0] - v0[0]) * f;
 	result[1] = v0[1] + (v1[1] - v0[1]) * f;
@@ -1824,17 +1824,17 @@ mfloat_t *vec4_lerp(mfloat_t *result, mfloat_t *v0, mfloat_t *v1, mfloat_t f)
 	return result;
 }
 
-bool quat_is_zero(mfloat_t *q0)
+bool quat_is_zero(double *q0)
 {
 	return MFABS(q0[0]) < MFLT_EPSILON && MFABS(q0[1]) < MFLT_EPSILON && MFABS(q0[2]) < MFLT_EPSILON && MFABS(q0[3]) < MFLT_EPSILON;
 }
 
-bool quat_is_equal(mfloat_t *q0, mfloat_t *q1)
+bool quat_is_equal(double *q0, double *q1)
 {
 	return MFABS(q0[0] - q1[0]) < MFLT_EPSILON && MFABS(q0[1] - q1[1]) < MFLT_EPSILON && MFABS(q0[2] - q1[2]) < MFLT_EPSILON && MFABS(q0[3] - q1[3]) < MFLT_EPSILON;
 }
 
-mfloat_t *quat(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+double *quat(double *result, double x, double y, double z, double w)
 {
 	result[0] = x;
 	result[1] = y;
@@ -1843,7 +1843,7 @@ mfloat_t *quat(mfloat_t *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
 	return result;
 }
 
-mfloat_t *quat_assign(mfloat_t *result, mfloat_t *q0)
+double *quat_assign(double *result, double *q0)
 {
 	result[0] = q0[0];
 	result[1] = q0[1];
@@ -1852,7 +1852,7 @@ mfloat_t *quat_assign(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *quat_zero(mfloat_t *result)
+double *quat_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -1861,7 +1861,7 @@ mfloat_t *quat_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *quat_null(mfloat_t *result)
+double *quat_null(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -1870,7 +1870,7 @@ mfloat_t *quat_null(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *quat_multiply(mfloat_t *result, mfloat_t *q0, mfloat_t *q1)
+double *quat_multiply(double *result, double *q0, double *q1)
 {
 	result[0] = q0[3] * q1[0] + q0[0] * q1[3] + q0[1] * q1[2] - q0[2] * q1[1];
 	result[1] = q0[3] * q1[1] + q0[1] * q1[3] + q0[2] * q1[0] - q0[0] * q1[2];
@@ -1879,7 +1879,7 @@ mfloat_t *quat_multiply(mfloat_t *result, mfloat_t *q0, mfloat_t *q1)
 	return result;
 }
 
-mfloat_t *quat_multiply_f(mfloat_t *result, mfloat_t *q0, mfloat_t f)
+double *quat_multiply_f(double *result, double *q0, double f)
 {
 	result[0] = q0[0] * f;
 	result[1] = q0[1] * f;
@@ -1888,17 +1888,17 @@ mfloat_t *quat_multiply_f(mfloat_t *result, mfloat_t *q0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *quat_divide(mfloat_t *result, mfloat_t *q0, mfloat_t *q1)
+double *quat_divide(double *result, double *q0, double *q1)
 {
-	mfloat_t x = q0[0];
-	mfloat_t y = q0[1];
-	mfloat_t z = q0[2];
-	mfloat_t w = q0[3];
-	mfloat_t ls = q1[0] * q1[0] + q1[1] * q1[1] + q1[8] * q1[8] + q1[3] * q1[3];
-	mfloat_t normalized_x = -q1[0] / ls;
-	mfloat_t normalized_y = -q1[1] / ls;
-	mfloat_t normalized_z = -q1[8] / ls;
-	mfloat_t normalized_w = q1[3] / ls;
+	double x = q0[0];
+	double y = q0[1];
+	double z = q0[2];
+	double w = q0[3];
+	double ls = q1[0] * q1[0] + q1[1] * q1[1] + q1[8] * q1[8] + q1[3] * q1[3];
+	double normalized_x = -q1[0] / ls;
+	double normalized_y = -q1[1] / ls;
+	double normalized_z = -q1[8] / ls;
+	double normalized_w = q1[3] / ls;
 	result[0] = x * normalized_w + normalized_x * w + (y * normalized_z - z * normalized_y);
 	result[1] = y * normalized_w + normalized_y * w + (z * normalized_x - x * normalized_z);
 	result[2] = z * normalized_w + normalized_z * w + (x * normalized_y - y * normalized_x);
@@ -1906,7 +1906,7 @@ mfloat_t *quat_divide(mfloat_t *result, mfloat_t *q0, mfloat_t *q1)
 	return result;
 }
 
-mfloat_t *quat_divide_f(mfloat_t *result, mfloat_t *q0, mfloat_t f)
+double *quat_divide_f(double *result, double *q0, double f)
 {
 	result[0] = q0[0] / f;
 	result[1] = q0[1] / f;
@@ -1915,7 +1915,7 @@ mfloat_t *quat_divide_f(mfloat_t *result, mfloat_t *q0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *quat_negative(mfloat_t *result, mfloat_t *q0)
+double *quat_negative(double *result, double *q0)
 {
 	result[0] = -q0[0];
 	result[1] = -q0[1];
@@ -1924,7 +1924,7 @@ mfloat_t *quat_negative(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *quat_conjugate(mfloat_t *result, mfloat_t *q0)
+double *quat_conjugate(double *result, double *q0)
 {
 	result[0] = -q0[0];
 	result[1] = -q0[1];
@@ -1933,9 +1933,9 @@ mfloat_t *quat_conjugate(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *quat_inverse(mfloat_t *result, mfloat_t *q0)
+double *quat_inverse(double *result, double *q0)
 {
-	mfloat_t l = MFLOAT_C(1.0) / (q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3]);
+	double l = MFLOAT_C(1.0) / (q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3]);
 	result[0] = -q0[0] * l;
 	result[1] = -q0[1] * l;
 	result[2] = -q0[2] * l;
@@ -1943,9 +1943,9 @@ mfloat_t *quat_inverse(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *quat_normalize(mfloat_t *result, mfloat_t *q0)
+double *quat_normalize(double *result, double *q0)
 {
-	mfloat_t l = MFLOAT_C(1.0) / MSQRT(q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3]);
+	double l = MFLOAT_C(1.0) / MSQRT(q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3]);
 	result[0] = q0[0] * l;
 	result[1] = q0[1] * l;
 	result[2] = q0[2] * l;
@@ -1953,17 +1953,17 @@ mfloat_t *quat_normalize(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t quat_dot(mfloat_t *q0, mfloat_t *q1)
+double quat_dot(double *q0, double *q1)
 {
 	return q0[0] * q1[0] + q0[1] * q1[1] + q0[2] * q1[2] + q0[3] * q1[3];
 }
 
-mfloat_t *quat_power(mfloat_t *result, mfloat_t *q0, mfloat_t exponent)
+double *quat_power(double *result, double *q0, double exponent)
 {
 	if (MFABS(q0[3]) < MFLOAT_C(1.0) - MFLT_EPSILON) {
-		mfloat_t alpha = MACOS(q0[3]);
-		mfloat_t new_alpha = alpha * exponent;
-		mfloat_t s = MSIN(new_alpha) / MSIN(alpha);
+		double alpha = MACOS(q0[3]);
+		double new_alpha = alpha * exponent;
+		double s = MSIN(new_alpha) / MSIN(alpha);
 		result[0] = result[0] * s;
 		result[1] = result[1] * s;
 		result[2] = result[2] * s;
@@ -1977,10 +1977,10 @@ mfloat_t *quat_power(mfloat_t *result, mfloat_t *q0, mfloat_t exponent)
 	return result;
 }
 
-mfloat_t *quat_from_axis_angle(mfloat_t *result, mfloat_t *v0, mfloat_t angle)
+double *quat_from_axis_angle(double *result, double *v0, double angle)
 {
-	mfloat_t half = angle * MFLOAT_C(0.5);
-	mfloat_t s = MSIN(half);
+	double half = angle * MFLOAT_C(0.5);
+	double s = MSIN(half);
 	result[0] = v0[0] * s;
 	result[1] = v0[1] * s;
 	result[2] = v0[2] * s;
@@ -1988,45 +1988,45 @@ mfloat_t *quat_from_axis_angle(mfloat_t *result, mfloat_t *v0, mfloat_t angle)
 	return result;
 }
 
-mfloat_t *quat_from_vec3(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+double *quat_from_vec3(double *result, double *v0, double *v1)
 {
-	mfloat_t cross[VEC3_SIZE];
-	mfloat_t d = vec3_dot(v0, v1);
-	mfloat_t a_ls = vec3_length_squared(v0);
-	mfloat_t b_ls = vec3_length_squared(v0);
+	double cross[VEC3_SIZE];
+	double d = vec3_dot(v0, v1);
+	double a_ls = vec3_length_squared(v0);
+	double b_ls = vec3_length_squared(v0);
 	vec3_cross(cross, v0, v1);
 	quat(result, cross[0], cross[1], cross[1], d + MSQRT(a_ls * b_ls));
 	quat_normalize(result, result);
 	return result;
 }
 
-mfloat_t *quat_from_mat4(mfloat_t *result, mfloat_t *m0)
+double *quat_from_mat4(double *result, double *m0)
 {
-	mfloat_t scale = m0[0] + m0[5] + m0[10];
+	double scale = m0[0] + m0[5] + m0[10];
 	if (scale > MFLOAT_C(0.0)) {
-		mfloat_t sr = MSQRT(scale + MFLOAT_C(1.0));
+		double sr = MSQRT(scale + MFLOAT_C(1.0));
 		result[3] = sr * MFLOAT_C(0.5);
 		sr = MFLOAT_C(0.5) / sr;
 		result[0] = (m0[9] - m0[6]) * sr;
 		result[1] = (m0[2] - m0[8]) * sr;
 		result[2] = (m0[4] - m0[1]) * sr;
 	} else if ((m0[0] >= m0[5]) && (m0[0] >= m0[10])) {
-		mfloat_t sr = MSQRT(MFLOAT_C(1.0) + m0[0] - m0[5] - m0[10]);
-		mfloat_t half = MFLOAT_C(0.5) / sr;
+		double sr = MSQRT(MFLOAT_C(1.0) + m0[0] - m0[5] - m0[10]);
+		double half = MFLOAT_C(0.5) / sr;
 		result[0] = MFLOAT_C(0.5) * sr;
 		result[1] = (m0[4] + m0[1]) * half;
 		result[2] = (m0[8] + m0[2]) * half;
 		result[3] = (m0[9] - m0[6]) * half;
 	} else if (m0[5] > m0[10]) {
-		mfloat_t sr = MSQRT(MFLOAT_C(1.0) + m0[5] - m0[0] - m0[10]);
-		mfloat_t half = MFLOAT_C(0.5) / sr;
+		double sr = MSQRT(MFLOAT_C(1.0) + m0[5] - m0[0] - m0[10]);
+		double half = MFLOAT_C(0.5) / sr;
 		result[0] = (m0[1] + m0[4]) * half;
 		result[1] = MFLOAT_C(0.5) * sr;
 		result[2] = (m0[6] + m0[9]) * half;
 		result[3] = (m0[2] - m0[8]) * half;
 	} else {
-		mfloat_t sr = MSQRT(MFLOAT_C(1.0) + m0[10] - m0[0] - m0[5]);
-		mfloat_t half = MFLOAT_C(0.5) / sr;
+		double sr = MSQRT(MFLOAT_C(1.0) + m0[10] - m0[0] - m0[5]);
+		double half = MFLOAT_C(0.5) / sr;
 		result[0] = (m0[2] + m0[8]) * half;
 		result[1] = (m0[6] + m0[9]) * half;
 		result[2] = MFLOAT_C(0.5) * sr;
@@ -2035,7 +2035,7 @@ mfloat_t *quat_from_mat4(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *quat_lerp(mfloat_t *result, mfloat_t *q0, mfloat_t *q1, mfloat_t f)
+double *quat_lerp(double *result, double *q0, double *q1, double f)
 {
 	result[0] = q0[0] + (q1[0] - q0[0]) * f;
 	result[1] = q0[1] + (q1[1] - q0[1]) * f;
@@ -2044,12 +2044,12 @@ mfloat_t *quat_lerp(mfloat_t *result, mfloat_t *q0, mfloat_t *q1, mfloat_t f)
 	return result;
 }
 
-mfloat_t *quat_slerp(mfloat_t *result, mfloat_t *q0, mfloat_t *q1, mfloat_t f)
+double *quat_slerp(double *result, double *q0, double *q1, double f)
 {
-	mfloat_t tmp1[QUAT_SIZE];
-	mfloat_t d = quat_dot(q0, q1);
-	mfloat_t f0;
-	mfloat_t f1;
+	double tmp1[QUAT_SIZE];
+	double d = quat_dot(q0, q1);
+	double f0;
+	double f1;
 	quat_assign(tmp1, q1);
 	if (d < MFLOAT_C(0.0)) {
 		quat_negative(tmp1, tmp1);
@@ -2059,8 +2059,8 @@ mfloat_t *quat_slerp(mfloat_t *result, mfloat_t *q0, mfloat_t *q1, mfloat_t f)
 		f0 = MFLOAT_C(1.0) - f;
 		f1 = f;
 	} else {
-		mfloat_t theta = MACOS(d);
-		mfloat_t sin_theta = MSIN(theta);
+		double theta = MACOS(d);
+		double sin_theta = MSIN(theta);
 		f0 = MSIN((MFLOAT_C(1.0) - f) * theta) / sin_theta;
 		f1 = MSIN(f * theta) / sin_theta;
 	}
@@ -2071,24 +2071,24 @@ mfloat_t *quat_slerp(mfloat_t *result, mfloat_t *q0, mfloat_t *q1, mfloat_t f)
 	return result;
 }
 
-mfloat_t quat_length(mfloat_t *q0)
+double quat_length(double *q0)
 {
 	return MSQRT(q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3]);
 }
 
-mfloat_t quat_length_squared(mfloat_t *q0)
+double quat_length_squared(double *q0)
 {
 	return q0[0] * q0[0] + q0[1] * q0[1] + q0[2] * q0[2] + q0[3] * q0[3];
 }
 
-mfloat_t quat_angle(mfloat_t *q0, mfloat_t *q1)
+double quat_angle(double *q0, double *q1)
 {
-	mfloat_t s = MSQRT(quat_length_squared(q0) * quat_length_squared(q1));
+	double s = MSQRT(quat_length_squared(q0) * quat_length_squared(q1));
 	s = MFLOAT_C(1.0) / s;
 	return MACOS(quat_dot(q0, q1) * s);
 }
 
-mfloat_t *mat2(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m21, mfloat_t m22)
+double *mat2(double *result, double m11, double m12, double m21, double m22)
 {
 	result[0] = m11;
 	result[1] = m21;
@@ -2097,7 +2097,7 @@ mfloat_t *mat2(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m21, mfloa
 	return result;
 }
 
-mfloat_t *mat2_zero(mfloat_t *result)
+double *mat2_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2106,7 +2106,7 @@ mfloat_t *mat2_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *mat2_identity(mfloat_t *result)
+double *mat2_identity(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2115,12 +2115,12 @@ mfloat_t *mat2_identity(mfloat_t *result)
 	return result;
 }
 
-mfloat_t mat2_determinant(mfloat_t *m0)
+double mat2_determinant(double *m0)
 {
 	return m0[0] * m0[3] - m0[2] * m0[1];
 }
 
-mfloat_t *mat2_assign(mfloat_t *result, mfloat_t *m0)
+double *mat2_assign(double *result, double *m0)
 {
 	result[0] = m0[0];
 	result[1] = m0[1];
@@ -2129,7 +2129,7 @@ mfloat_t *mat2_assign(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_negative(mfloat_t *result, mfloat_t *m0)
+double *mat2_negative(double *result, double *m0)
 {
 	result[0] = -m0[0];
 	result[1] = -m0[1];
@@ -2138,9 +2138,9 @@ mfloat_t *mat2_negative(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_transpose(mfloat_t *result, mfloat_t *m0)
+double *mat2_transpose(double *result, double *m0)
 {
-	mfloat_t transposed[MAT2_SIZE];
+	double transposed[MAT2_SIZE];
 	transposed[0] = m0[0];
 	transposed[1] = m0[2];
 	transposed[2] = m0[1];
@@ -2152,9 +2152,9 @@ mfloat_t *mat2_transpose(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_cofactor(mfloat_t *result, mfloat_t *m0)
+double *mat2_cofactor(double *result, double *m0)
 {
-	mfloat_t cofactor[MAT2_SIZE];
+	double cofactor[MAT2_SIZE];
 	cofactor[0] = m0[3];
 	cofactor[1] = -m0[2];
 	cofactor[2] = -m0[1];
@@ -2166,9 +2166,9 @@ mfloat_t *mat2_cofactor(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_adjugate(mfloat_t *result, mfloat_t *m0)
+double *mat2_adjugate(double *result, double *m0)
 {
-	mfloat_t adjugate[MAT2_SIZE];
+	double adjugate[MAT2_SIZE];
 	adjugate[0] = m0[3];
 	adjugate[1] = -m0[1];
 	adjugate[2] = -m0[2];
@@ -2180,9 +2180,9 @@ mfloat_t *mat2_adjugate(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
+double *mat2_multiply(double *result, double *m0, double *m1)
 {
-	mfloat_t multiplied[MAT3_SIZE];
+	double multiplied[MAT3_SIZE];
 	multiplied[0] = m0[0] * m1[0] + m0[2] * m1[1];
 	multiplied[1] = m0[1] * m1[0] + m0[3] * m1[1];
 	multiplied[2] = m0[0] * m1[2] + m0[2] * m1[3];
@@ -2194,7 +2194,7 @@ mfloat_t *mat2_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
 	return result;
 }
 
-mfloat_t *mat2_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
+double *mat2_multiply_f(double *result, double *m0, double f)
 {
 	result[0] = m0[0] * f;
 	result[1] = m0[1] * f;
@@ -2203,10 +2203,10 @@ mfloat_t *mat2_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat2_inverse(mfloat_t *result, mfloat_t *m0)
+double *mat2_inverse(double *result, double *m0)
 {
-	mfloat_t inverse[MAT2_SIZE];
-	mfloat_t det = mat2_determinant(m0);
+	double inverse[MAT2_SIZE];
+	double det = mat2_determinant(m0);
 	mat2_cofactor(inverse, m0);
 	mat2_multiply_f(inverse, inverse, MFLOAT_C(1.0) / det);
 	result[0] = inverse[0];
@@ -2216,24 +2216,24 @@ mfloat_t *mat2_inverse(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat2_scaling(mfloat_t *result, mfloat_t *v0)
+double *mat2_scaling(double *result, double *v0)
 {
 	result[0] = v0[0];
 	result[3] = v0[1];
 	return result;
 }
 
-mfloat_t *mat2_scale(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat2_scale(double *result, double *m0, double *v0)
 {
 	result[0] = m0[0] * v0[0];
 	result[3] = m0[3] * v0[1];
 	return result;
 }
 
-mfloat_t *mat2_rotation_z(mfloat_t *result, mfloat_t f)
+double *mat2_rotation_z(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[0] = c;
 	result[1] = s;
 	result[2] = -s;
@@ -2241,7 +2241,7 @@ mfloat_t *mat2_rotation_z(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat2_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
+double *mat2_lerp(double *result, double *m0, double *m1, double f)
 {
 	result[0] = m0[0] + (m1[0] - m0[0]) * f;
 	result[1] = m0[1] + (m1[1] - m0[1]) * f;
@@ -2250,7 +2250,7 @@ mfloat_t *mat2_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m31, mfloat_t m32, mfloat_t m33)
+double *mat3(double *result, double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
 {
 	result[0] = m11;
 	result[1] = m21;
@@ -2264,7 +2264,7 @@ mfloat_t *mat3(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloa
 	return result;
 }
 
-mfloat_t *mat3_zero(mfloat_t *result)
+double *mat3_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2278,7 +2278,7 @@ mfloat_t *mat3_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *mat3_identity(mfloat_t *result)
+double *mat3_identity(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2292,18 +2292,18 @@ mfloat_t *mat3_identity(mfloat_t *result)
 	return result;
 }
 
-mfloat_t mat3_determinant(mfloat_t *m0)
+double mat3_determinant(double *m0)
 {
-	mfloat_t m11 = m0[0];
-	mfloat_t m21 = m0[1];
-	mfloat_t m31 = m0[2];
-	mfloat_t m12 = m0[3];
-	mfloat_t m22 = m0[4];
-	mfloat_t m32 = m0[5];
-	mfloat_t m13 = m0[6];
-	mfloat_t m23 = m0[7];
-	mfloat_t m33 = m0[8];
-	mfloat_t determinant = m11 * m22 * m33
+	double m11 = m0[0];
+	double m21 = m0[1];
+	double m31 = m0[2];
+	double m12 = m0[3];
+	double m22 = m0[4];
+	double m32 = m0[5];
+	double m13 = m0[6];
+	double m23 = m0[7];
+	double m33 = m0[8];
+	double determinant = m11 * m22 * m33
 		+ m12 * m23 * m31
 		+ m13 * m21 * m32
 		- m11 * m23 * m32
@@ -2312,7 +2312,7 @@ mfloat_t mat3_determinant(mfloat_t *m0)
 	return determinant;
 }
 
-mfloat_t *mat3_assign(mfloat_t *result, mfloat_t *m0)
+double *mat3_assign(double *result, double *m0)
 {
 	result[0] = m0[0];
 	result[1] = m0[1];
@@ -2326,7 +2326,7 @@ mfloat_t *mat3_assign(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat3_negative(mfloat_t *result, mfloat_t *m0)
+double *mat3_negative(double *result, double *m0)
 {
 	result[0] = -m0[0];
 	result[1] = -m0[1];
@@ -2340,9 +2340,9 @@ mfloat_t *mat3_negative(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat3_transpose(mfloat_t *result, mfloat_t *m0)
+double *mat3_transpose(double *result, double *m0)
 {
-	mfloat_t transposed[MAT4_SIZE];
+	double transposed[MAT4_SIZE];
 	transposed[0] = m0[0];
 	transposed[1] = m0[3];
 	transposed[2] = m0[6];
@@ -2364,10 +2364,10 @@ mfloat_t *mat3_transpose(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat3_cofactor(mfloat_t *result, mfloat_t *m0)
+double *mat3_cofactor(double *result, double *m0)
 {
-	mfloat_t cofactor[MAT3_SIZE];
-	mfloat_t minor[MAT2_SIZE];
+	double cofactor[MAT3_SIZE];
+	double minor[MAT2_SIZE];
 	minor[0] = m0[4];
 	minor[1] = m0[5];
 	minor[2] = m0[7];
@@ -2425,9 +2425,9 @@ mfloat_t *mat3_cofactor(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat3_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
+double *mat3_multiply(double *result, double *m0, double *m1)
 {
-	mfloat_t multiplied[MAT3_SIZE];
+	double multiplied[MAT3_SIZE];
 	multiplied[0] = m0[0] * m1[0] + m0[3] * m1[1] + m0[6] * m1[2];
 	multiplied[1] = m0[1] * m1[0] + m0[4] * m1[1] + m0[7] * m1[2];
 	multiplied[2] = m0[2] * m1[0] + m0[5] * m1[1] + m0[8] * m1[2];
@@ -2449,7 +2449,7 @@ mfloat_t *mat3_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
 	return result;
 }
 
-mfloat_t *mat3_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
+double *mat3_multiply_f(double *result, double *m0, double f)
 {
 	result[0] = m0[0] * f;
 	result[1] = m0[1] * f;
@@ -2463,13 +2463,13 @@ mfloat_t *mat3_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3_inverse(mfloat_t *result, mfloat_t *m0)
+double *mat3_inverse(double *result, double *m0)
 {
 	result = m0;
 	return result;
 }
 
-mfloat_t *mat3_scaling(mfloat_t *result, mfloat_t *v0)
+double *mat3_scaling(double *result, double *v0)
 {
 	result[0] = v0[0];
 	result[4] = v0[1];
@@ -2477,7 +2477,7 @@ mfloat_t *mat3_scaling(mfloat_t *result, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat3_scale(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat3_scale(double *result, double *m0, double *v0)
 {
 	result[0] = m0[0] * v0[0];
 	result[4] = m0[4] * v0[1];
@@ -2485,10 +2485,10 @@ mfloat_t *mat3_scale(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat3_rotation_x(mfloat_t *result, mfloat_t f)
+double *mat3_rotation_x(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[4] = c;
 	result[5] = s;
 	result[7] = -s;
@@ -2496,10 +2496,10 @@ mfloat_t *mat3_rotation_x(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3_rotation_y(mfloat_t *result, mfloat_t f)
+double *mat3_rotation_y(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[0] = c;
 	result[2] = -s;
 	result[6] = s;
@@ -2507,10 +2507,10 @@ mfloat_t *mat3_rotation_y(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3_rotation_z(mfloat_t *result, mfloat_t f)
+double *mat3_rotation_z(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[0] = c;
 	result[1] = s;
 	result[3] = -s;
@@ -2518,22 +2518,22 @@ mfloat_t *mat3_rotation_z(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3_rotation_axis(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *mat3_rotation_axis(double *result, double *v0, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
-	mfloat_t one_c = MFLOAT_C(1.0) - c;
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[4];
-	mfloat_t z = v0[8];
-	mfloat_t xx = x * x;
-	mfloat_t xy = x * y;
-	mfloat_t xz = x * z;
-	mfloat_t yy = y * y;
-	mfloat_t yz = y * z;
-	mfloat_t zz = z * z;
-	mfloat_t l = xx + yy + zz;
-	mfloat_t sqrt_l = MSQRT(l);
+	double c = MCOS(f);
+	double s = MSIN(f);
+	double one_c = MFLOAT_C(1.0) - c;
+	double x = v0[0];
+	double y = v0[4];
+	double z = v0[8];
+	double xx = x * x;
+	double xy = x * y;
+	double xz = x * z;
+	double yy = y * y;
+	double yz = y * z;
+	double zz = z * z;
+	double l = xx + yy + zz;
+	double sqrt_l = MSQRT(l);
 	result[0] = (xx + (yy + zz) * c) / l;
 	result[1] = (xy * one_c + v0[2] * sqrt_l * s) / l;
 	result[2] = (xz * one_c - v0[1] * sqrt_l * s) / l;
@@ -2546,17 +2546,17 @@ mfloat_t *mat3_rotation_axis(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat3_rotation_quat(mfloat_t *result, mfloat_t *q0)
+double *mat3_rotation_quat(double *result, double *q0)
 {
-	mfloat_t xx = q0[0] * q0[0];
-	mfloat_t yy = q0[1] * q0[1];
-	mfloat_t zz = q0[2] * q0[2];
-	mfloat_t xy = q0[0] * q0[1];
-	mfloat_t zw = q0[2] * q0[3];
-	mfloat_t xz = q0[8] * q0[0];
-	mfloat_t yw = q0[1] * q0[3];
-	mfloat_t yz = q0[1] * q0[2];
-	mfloat_t xw = q0[0] * q0[3];
+	double xx = q0[0] * q0[0];
+	double yy = q0[1] * q0[1];
+	double zz = q0[2] * q0[2];
+	double xy = q0[0] * q0[1];
+	double zw = q0[2] * q0[3];
+	double xz = q0[8] * q0[0];
+	double yw = q0[1] * q0[3];
+	double yz = q0[1] * q0[2];
+	double xw = q0[0] * q0[3];
 	result[0] = MFLOAT_C(1.0) - MFLOAT_C(2.0) * (yy - zz);
 	result[1] = MFLOAT_C(2.0) * (xy + zw);
 	result[2] = MFLOAT_C(2.0) * (xz - yw);
@@ -2569,7 +2569,7 @@ mfloat_t *mat3_rotation_quat(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *mat3_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
+double *mat3_lerp(double *result, double *m0, double *m1, double f)
 {
 	result[0] = m0[0] + (m1[0] - m0[0]) * f;
 	result[1] = m0[1] + (m1[1] - m0[1]) * f;
@@ -2583,7 +2583,7 @@ mfloat_t *mat3_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m14, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m24, mfloat_t m31, mfloat_t m32, mfloat_t m33, mfloat_t m34, mfloat_t m41, mfloat_t m42, mfloat_t m43, mfloat_t m44)
+double *mat4(double *result, double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double m41, double m42, double m43, double m44)
 {
 	result[0] = m11;
 	result[1] = m21;
@@ -2604,7 +2604,7 @@ mfloat_t *mat4(mfloat_t *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloa
 	return result;
 }
 
-mfloat_t *mat4_zero(mfloat_t *result)
+double *mat4_zero(double *result)
 {
 	result[0] = MFLOAT_C(0.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2625,7 +2625,7 @@ mfloat_t *mat4_zero(mfloat_t *result)
 	return result;
 }
 
-mfloat_t *mat4_identity(mfloat_t *result)
+double *mat4_identity(double *result)
 {
 	result[0] = MFLOAT_C(1.0);
 	result[1] = MFLOAT_C(0.0);
@@ -2646,25 +2646,25 @@ mfloat_t *mat4_identity(mfloat_t *result)
 	return result;
 }
 
-mfloat_t mat4_determinant(mfloat_t *m0)
+double mat4_determinant(double *m0)
 {
-	mfloat_t m11 = m0[0];
-	mfloat_t m21 = m0[1];
-	mfloat_t m31 = m0[2];
-	mfloat_t m41 = m0[3];
-	mfloat_t m12 = m0[4];
-	mfloat_t m22 = m0[5];
-	mfloat_t m32 = m0[6];
-	mfloat_t m42 = m0[7];
-	mfloat_t m13 = m0[8];
-	mfloat_t m23 = m0[9];
-	mfloat_t m33 = m0[10];
-	mfloat_t m43 = m0[11];
-	mfloat_t m14 = m0[12];
-	mfloat_t m24 = m0[13];
-	mfloat_t m34 = m0[14];
-	mfloat_t m44 = m0[15];
-	mfloat_t determinant = m14 * m23 * m32 * m41 - m13 * m24 * m32 * m41
+	double m11 = m0[0];
+	double m21 = m0[1];
+	double m31 = m0[2];
+	double m41 = m0[3];
+	double m12 = m0[4];
+	double m22 = m0[5];
+	double m32 = m0[6];
+	double m42 = m0[7];
+	double m13 = m0[8];
+	double m23 = m0[9];
+	double m33 = m0[10];
+	double m43 = m0[11];
+	double m14 = m0[12];
+	double m24 = m0[13];
+	double m34 = m0[14];
+	double m44 = m0[15];
+	double determinant = m14 * m23 * m32 * m41 - m13 * m24 * m32 * m41
 		- m14 * m22 * m33 * m41 + m12 * m24 * m33 * m41
 		+ m13 * m22 * m34 * m41 - m12 * m23 * m34 * m41
 		- m14 * m23 * m31 * m42 + m13 * m24 * m31 * m42
@@ -2679,7 +2679,7 @@ mfloat_t mat4_determinant(mfloat_t *m0)
 	return determinant;
 }
 
-mfloat_t *mat4_assign(mfloat_t *result, mfloat_t *m0)
+double *mat4_assign(double *result, double *m0)
 {
 	result[0] = m0[0];
 	result[1] = m0[1];
@@ -2700,7 +2700,7 @@ mfloat_t *mat4_assign(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat4_negative(mfloat_t *result, mfloat_t *m0)
+double *mat4_negative(double *result, double *m0)
 {
 	result[0] = -m0[0];
 	result[1] = -m0[1];
@@ -2721,9 +2721,9 @@ mfloat_t *mat4_negative(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat4_transpose(mfloat_t *result, mfloat_t *m0)
+double *mat4_transpose(double *result, double *m0)
 {
-	mfloat_t transposed[MAT4_SIZE];
+	double transposed[MAT4_SIZE];
 	transposed[0] = m0[0];
 	transposed[1] = m0[4];
 	transposed[2] = m0[8];
@@ -2759,10 +2759,10 @@ mfloat_t *mat4_transpose(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat4_cofactor(mfloat_t *result, mfloat_t *m0)
+double *mat4_cofactor(double *result, double *m0)
 {
-	mfloat_t cofactor[MAT4_SIZE];
-	mfloat_t minor[MAT3_SIZE];
+	double cofactor[MAT4_SIZE];
+	double minor[MAT3_SIZE];
 	minor[0] = m0[5];
 	minor[1] = m0[6];
 	minor[2] = m0[7];
@@ -2942,10 +2942,10 @@ mfloat_t *mat4_cofactor(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat4_rotation_x(mfloat_t *result, mfloat_t f)
+double *mat4_rotation_x(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[5] = c;
 	result[6] = s;
 	result[9] = -s;
@@ -2953,10 +2953,10 @@ mfloat_t *mat4_rotation_x(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_rotation_y(mfloat_t *result, mfloat_t f)
+double *mat4_rotation_y(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[0] = c;
 	result[2] = -s;
 	result[8] = s;
@@ -2964,10 +2964,10 @@ mfloat_t *mat4_rotation_y(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_rotation_z(mfloat_t *result, mfloat_t f)
+double *mat4_rotation_z(double *result, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
+	double c = MCOS(f);
+	double s = MSIN(f);
 	result[0] = c;
 	result[1] = s;
 	result[4] = -s;
@@ -2975,22 +2975,22 @@ mfloat_t *mat4_rotation_z(mfloat_t *result, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_rotation_axis(mfloat_t *result, mfloat_t *v0, mfloat_t f)
+double *mat4_rotation_axis(double *result, double *v0, double f)
 {
-	mfloat_t c = MCOS(f);
-	mfloat_t s = MSIN(f);
-	mfloat_t one_c = MFLOAT_C(1.0) - c;
-	mfloat_t x = v0[0];
-	mfloat_t y = v0[1];
-	mfloat_t z = v0[2];
-	mfloat_t xx = x * x;
-	mfloat_t xy = x * y;
-	mfloat_t xz = x * z;
-	mfloat_t yy = y * y;
-	mfloat_t yz = y * z;
-	mfloat_t zz = z * z;
-	mfloat_t l = xx + yy + zz;
-	mfloat_t sqrt_l = MSQRT(l);
+	double c = MCOS(f);
+	double s = MSIN(f);
+	double one_c = MFLOAT_C(1.0) - c;
+	double x = v0[0];
+	double y = v0[1];
+	double z = v0[2];
+	double xx = x * x;
+	double xy = x * y;
+	double xz = x * z;
+	double yy = y * y;
+	double yz = y * z;
+	double zz = z * z;
+	double l = xx + yy + zz;
+	double sqrt_l = MSQRT(l);
 	result[0] = (xx + (yy + zz) * c) / l;
 	result[1] = (xy * one_c + v0[2] * sqrt_l * s) / l;
 	result[2] = (xz * one_c - v0[1] * sqrt_l * s) / l;
@@ -3010,17 +3010,17 @@ mfloat_t *mat4_rotation_axis(mfloat_t *result, mfloat_t *v0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_rotation_quat(mfloat_t *result, mfloat_t *q0)
+double *mat4_rotation_quat(double *result, double *q0)
 {
-	mfloat_t xx = q0[0] * q0[0];
-	mfloat_t yy = q0[1] * q0[1];
-	mfloat_t zz = q0[2] * q0[2];
-	mfloat_t xy = q0[0] * q0[1];
-	mfloat_t zw = q0[2] * q0[3];
-	mfloat_t xz = q0[0] * q0[2];
-	mfloat_t yw = q0[1] * q0[3];
-	mfloat_t yz = q0[1] * q0[2];
-	mfloat_t xw = q0[0] * q0[3];
+	double xx = q0[0] * q0[0];
+	double yy = q0[1] * q0[1];
+	double zz = q0[2] * q0[2];
+	double xy = q0[0] * q0[1];
+	double zw = q0[2] * q0[3];
+	double xz = q0[0] * q0[2];
+	double yw = q0[1] * q0[3];
+	double yz = q0[1] * q0[2];
+	double xw = q0[0] * q0[3];
 	result[0] = MFLOAT_C(1.0) - MFLOAT_C(2.0) * (yy + zz);
 	result[1] = MFLOAT_C(2.0) * (xy + zw);
 	result[2] = MFLOAT_C(2.0) * (xz - yw);
@@ -3040,7 +3040,7 @@ mfloat_t *mat4_rotation_quat(mfloat_t *result, mfloat_t *q0)
 	return result;
 }
 
-mfloat_t *mat4_translation(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat4_translation(double *result, double *m0, double *v0)
 {
 	result[0] = m0[0];
 	result[1] = m0[1];
@@ -3061,7 +3061,7 @@ mfloat_t *mat4_translation(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat4_translate(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat4_translate(double *result, double *m0, double *v0)
 {
 	result[0] = m0[0];
 	result[1] = m0[1];
@@ -3082,7 +3082,7 @@ mfloat_t *mat4_translate(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat4_scaling(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat4_scaling(double *result, double *m0, double *v0)
 {
 	result[0] = v0[0];
 	result[1] = m0[1];
@@ -3103,7 +3103,7 @@ mfloat_t *mat4_scaling(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat4_scale(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
+double *mat4_scale(double *result, double *m0, double *v0)
 {
 	result[0] = m0[0] * v0[0];
 	result[1] = m0[1];
@@ -3124,9 +3124,9 @@ mfloat_t *mat4_scale(mfloat_t *result, mfloat_t *m0, mfloat_t *v0)
 	return result;
 }
 
-mfloat_t *mat4_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
+double *mat4_multiply(double *result, double *m0, double *m1)
 {
-	mfloat_t multiplied[MAT4_SIZE];
+	double multiplied[MAT4_SIZE];
 	multiplied[0] = m0[0] * m1[0] + m0[4] * m1[1] + m0[8] * m1[2] + m0[12] * m1[3];
 	multiplied[1] = m0[1] * m1[0] + m0[5] * m1[1] + m0[9] * m1[2] + m0[13] * m1[3];
 	multiplied[2] = m0[2] * m1[0] + m0[6] * m1[1] + m0[10] * m1[2] + m0[14] * m1[3];
@@ -3162,7 +3162,7 @@ mfloat_t *mat4_multiply(mfloat_t *result, mfloat_t *m0, mfloat_t *m1)
 	return result;
 }
 
-mfloat_t *mat4_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
+double *mat4_multiply_f(double *result, double *m0, double f)
 {
 	result[0] = m0[0] * f;
 	result[1] = m0[1] * f;
@@ -3183,26 +3183,26 @@ mfloat_t *mat4_multiply_f(mfloat_t *result, mfloat_t *m0, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_inverse(mfloat_t *result, mfloat_t *m0)
+double *mat4_inverse(double *result, double *m0)
 {
-	mfloat_t inverse[MAT4_SIZE];
-	mfloat_t inverted_determinant;
-	mfloat_t m11 = m0[0];
-	mfloat_t m21 = m0[1];
-	mfloat_t m31 = m0[2];
-	mfloat_t m41 = m0[3];
-	mfloat_t m12 = m0[4];
-	mfloat_t m22 = m0[5];
-	mfloat_t m32 = m0[6];
-	mfloat_t m42 = m0[7];
-	mfloat_t m13 = m0[8];
-	mfloat_t m23 = m0[9];
-	mfloat_t m33 = m0[10];
-	mfloat_t m43 = m0[11];
-	mfloat_t m14 = m0[12];
-	mfloat_t m24 = m0[13];
-	mfloat_t m34 = m0[14];
-	mfloat_t m44 = m0[15];
+	double inverse[MAT4_SIZE];
+	double inverted_determinant;
+	double m11 = m0[0];
+	double m21 = m0[1];
+	double m31 = m0[2];
+	double m41 = m0[3];
+	double m12 = m0[4];
+	double m22 = m0[5];
+	double m32 = m0[6];
+	double m42 = m0[7];
+	double m13 = m0[8];
+	double m23 = m0[9];
+	double m33 = m0[10];
+	double m43 = m0[11];
+	double m14 = m0[12];
+	double m24 = m0[13];
+	double m34 = m0[14];
+	double m44 = m0[15];
 	inverse[0] = m22 * m33 * m44
 		- m22 * m43 * m34
 		- m23 * m32 * m44
@@ -3319,7 +3319,7 @@ mfloat_t *mat4_inverse(mfloat_t *result, mfloat_t *m0)
 	return result;
 }
 
-mfloat_t *mat4_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
+double *mat4_lerp(double *result, double *m0, double *m1, double f)
 {
 	result[0] = m0[0] + (m1[0] - m0[0]) * f;
 	result[1] = m0[1] + (m1[1] - m0[1]) * f;
@@ -3340,11 +3340,11 @@ mfloat_t *mat4_lerp(mfloat_t *result, mfloat_t *m0, mfloat_t *m1, mfloat_t f)
 	return result;
 }
 
-mfloat_t *mat4_look_at(mfloat_t *result, mfloat_t *position, mfloat_t *target, mfloat_t *up)
+double *mat4_look_at(double *result, double *position, double *target, double *up)
 {
-	mfloat_t tmp_forward[VEC3_SIZE];
-	mfloat_t tmp_side[VEC3_SIZE];
-	mfloat_t tmp_up[VEC3_SIZE];
+	double tmp_forward[VEC3_SIZE];
+	double tmp_side[VEC3_SIZE];
+	double tmp_up[VEC3_SIZE];
 	vec3_subtract(tmp_forward, target, position);
 	vec3_normalize(tmp_forward, tmp_forward);
 	vec3_cross(tmp_side, tmp_forward, up);
@@ -3369,7 +3369,7 @@ mfloat_t *mat4_look_at(mfloat_t *result, mfloat_t *position, mfloat_t *target, m
 	return result;
 }
 
-mfloat_t *mat4_ortho(mfloat_t *result, mfloat_t l, mfloat_t r, mfloat_t b, mfloat_t t, mfloat_t n, mfloat_t f)
+double *mat4_ortho(double *result, double l, double r, double b, double t, double n, double f)
 {
 	result[0] = MFLOAT_C(2.0) / (r - l);
 	result[1] = MFLOAT_C(0.0);
@@ -3390,9 +3390,9 @@ mfloat_t *mat4_ortho(mfloat_t *result, mfloat_t l, mfloat_t r, mfloat_t b, mfloa
 	return result;
 }
 
-mfloat_t *mat4_perspective(mfloat_t *result, mfloat_t fov_y, mfloat_t aspect, mfloat_t n, mfloat_t f)
+double *mat4_perspective(double *result, double fov_y, double aspect, double n, double f)
 {
-	mfloat_t tan_half_fov_y = MFLOAT_C(1.0) / MTAN(fov_y * MFLOAT_C(0.5));
+	double tan_half_fov_y = MFLOAT_C(1.0) / MTAN(fov_y * MFLOAT_C(0.5));
 	result[0] = MFLOAT_C(1.0) / aspect * tan_half_fov_y;
 	result[1] = MFLOAT_C(0.0);
 	result[2] = MFLOAT_C(0.0);
@@ -3412,10 +3412,10 @@ mfloat_t *mat4_perspective(mfloat_t *result, mfloat_t fov_y, mfloat_t aspect, mf
 	return result;
 }
 
-mfloat_t *mat4_perspective_fov(mfloat_t *result, mfloat_t fov, mfloat_t w, mfloat_t h, mfloat_t n, mfloat_t f)
+double *mat4_perspective_fov(double *result, double fov, double w, double h, double n, double f)
 {
-	mfloat_t h2 = MCOS(fov * MFLOAT_C(0.5)) / MSIN(fov * MFLOAT_C(0.5));
-	mfloat_t w2 = h2 * h / w;
+	double h2 = MCOS(fov * MFLOAT_C(0.5)) / MSIN(fov * MFLOAT_C(0.5));
+	double w2 = h2 * h / w;
 	result[0] = w2;
 	result[1] = MFLOAT_C(0.0);
 	result[2] = MFLOAT_C(0.0);
@@ -3435,13 +3435,13 @@ mfloat_t *mat4_perspective_fov(mfloat_t *result, mfloat_t fov, mfloat_t w, mfloa
 	return result;
 }
 
-mfloat_t *mat4_perspective_infinite(mfloat_t *result, mfloat_t fov_y, mfloat_t aspect, mfloat_t n)
+double *mat4_perspective_infinite(double *result, double fov_y, double aspect, double n)
 {
-	mfloat_t range = MTAN(fov_y * MFLOAT_C(0.5)) * n;
-	mfloat_t left = -range * aspect;
-	mfloat_t right = range * aspect;
-	mfloat_t top = range;
-	mfloat_t bottom = -range;
+	double range = MTAN(fov_y * MFLOAT_C(0.5)) * n;
+	double left = -range * aspect;
+	double right = range * aspect;
+	double top = range;
+	double bottom = -range;
 	result[0] = MFLOAT_C(2.0) * n / (right - left);
 	result[1] = MFLOAT_C(0.0);
 	result[2] = MFLOAT_C(0.0);
@@ -3492,7 +3492,7 @@ struct vec2i svec2i_assign(struct vec2i v0)
 struct vec2i svec2i_assign_vec2(struct vec2 v0)
 {
 	struct vec2i result;
-	vec2i_assign_vec2((mint_t *)&result, (mfloat_t *)&v0);
+	vec2i_assign_vec2((mint_t *)&result, (double *)&v0);
 	return result;
 }
 #endif
@@ -3658,7 +3658,7 @@ struct vec3i svec3i_assign(struct vec3i v0)
 struct vec3i svec3i_assign_vec3(struct vec3 v0)
 {
 	struct vec3i result;
-	vec3i_assign_vec3((mint_t *)&result, (mfloat_t *)&v0);
+	vec3i_assign_vec3((mint_t *)&result, (double *)&v0);
 	return result;
 }
 #endif
@@ -3824,7 +3824,7 @@ struct vec4i svec4i_assign(struct vec4i v0)
 struct vec4i svec4i_assign_vec4(struct vec4 v0)
 {
 	struct vec4i result;
-	vec4i_assign_vec4((mint_t *)&result, (mfloat_t *)&v0);
+	vec4i_assign_vec4((mint_t *)&result, (double *)&v0);
 	return result;
 }
 #endif
@@ -3959,25 +3959,25 @@ struct vec4i svec4i_clamp(struct vec4i v0, struct vec4i v1, struct vec4i v2)
 #if defined(MATHC_USE_FLOATING_POINT)
 bool svec2_is_zero(struct vec2 v0)
 {
-	return vec2_is_zero((mfloat_t *)&v0);
+	return vec2_is_zero((double *)&v0);
 }
 
 bool svec2_is_equal(struct vec2 v0, struct vec2 v1)
 {
-	return vec2_is_equal((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec2_is_equal((double *)&v0, (double *)&v1);
 }
 
-struct vec2 svec2(mfloat_t x, mfloat_t y)
+struct vec2 svec2(double x, double y)
 {
 	struct vec2 result;
-	vec2((mfloat_t *)&result, x, y);
+	vec2((double *)&result, x, y);
 	return result;
 }
 
 struct vec2 svec2_assign(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_assign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_assign((double *)&result, (double *)&v0);
 	return result;
 }
 
@@ -3985,7 +3985,7 @@ struct vec2 svec2_assign(struct vec2 v0)
 struct vec2 svec2_assign_vec2i(struct vec2i v0)
 {
 	struct vec2 result;
-	vec2_assign_vec2i((mfloat_t *)&result, (mint_t *)&v0);
+	vec2_assign_vec2i((double *)&result, (mint_t *)&v0);
 	return result;
 }
 #endif
@@ -3993,271 +3993,271 @@ struct vec2 svec2_assign_vec2i(struct vec2i v0)
 struct vec2 svec2_zero(void)
 {
 	struct vec2 result;
-	vec2_zero((mfloat_t *)&result);
+	vec2_zero((double *)&result);
 	return result;
 }
 
 struct vec2 svec2_one(void)
 {
 	struct vec2 result;
-	vec2_one((mfloat_t *)&result);
+	vec2_one((double *)&result);
 	return result;
 }
 
 struct vec2 svec2_sign(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_sign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_sign((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_add(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_add((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_add((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec2 svec2_add_f(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_add_f(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_add_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_add_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec2 svec2_subtract(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_subtract((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_subtract((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec2 svec2_subtract_f(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_subtract_f(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_subtract_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_subtract_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec2 svec2_multiply(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_multiply((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_multiply((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec2 svec2_multiply_f(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_multiply_f(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_multiply_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_multiply_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec2 svec2_multiply_mat2(struct vec2 v0, struct mat2 m0)
 {
 	struct vec2 result;
-	vec2_multiply_mat2((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&m0);
+	vec2_multiply_mat2((double *)&result, (double *)&v0, (double *)&m0);
 	return result;
 }
 
 struct vec2 svec2_divide(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_divide((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_divide((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec2 svec2_divide_f(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_divide_f(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_divide_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_divide_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec2 svec2_snap(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_snap((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_snap((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec2 svec2_snap_f(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_snap_f(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_snap_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_snap_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec2 svec2_negative(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_negative((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_negative((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_abs(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_abs((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_abs((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_floor(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_floor((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_floor((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_ceil(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_ceil((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_ceil((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_round(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_round((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_round((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec2 svec2_max(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_max((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_max((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec2 svec2_min(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_min((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_min((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec2 svec2_clamp(struct vec2 v0, struct vec2 v1, struct vec2 v2)
 {
 	struct vec2 result;
-	vec2_clamp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2);
+	vec2_clamp((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2);
 	return result;
 }
 
 struct vec2 svec2_normalize(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_normalize((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_normalize((double *)&result, (double *)&v0);
 	return result;
 }
 
-mfloat_t svec2_dot(struct vec2 v0, struct vec2 v1)
+double svec2_dot(struct vec2 v0, struct vec2 v1)
 {
-	return vec2_dot((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec2_dot((double *)&v0, (double *)&v1);
 }
 
 struct vec2 svec2_project(struct vec2 v0, struct vec2 v1)
 {
 	struct vec2 result;
-	vec2_project((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec2_project((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec2 svec2_slide(struct vec2 v0, struct vec2 normal)
 {
 	struct vec2 result;
-	vec2_slide((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&normal);
+	vec2_slide((double *)&result, (double *)&v0, (double *)&normal);
 	return result;
 }
 
 struct vec2 svec2_reflect(struct vec2 v0, struct vec2 normal)
 {
 	struct vec2 result;
-	vec2_reflect((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&normal);
+	vec2_reflect((double *)&result, (double *)&v0, (double *)&normal);
 	return result;
 }
 
 struct vec2 svec2_tangent(struct vec2 v0)
 {
 	struct vec2 result;
-	vec2_tangent((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec2_tangent((double *)&result, (double *)&v0);
 	return result;
 }
 
-struct vec2 svec2_rotate(struct vec2 v0, mfloat_t f)
+struct vec2 svec2_rotate(struct vec2 v0, double f)
 {
 	struct vec2 result;
-	vec2_rotate((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec2_rotate((double *)&result, (double *)&v0, f);
 	return result;
 }
 
-struct vec2 svec2_lerp(struct vec2 v0, struct vec2 v1, mfloat_t f)
+struct vec2 svec2_lerp(struct vec2 v0, struct vec2 v1, double f)
 {
 	struct vec2 result;
-	vec2_lerp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, f);
+	vec2_lerp((double *)&result, (double *)&v0, (double *)&v1, f);
 	return result;
 }
 
-struct vec2 svec2_bezier3(struct vec2 v0, struct vec2 v1, struct vec2 v2, mfloat_t f)
+struct vec2 svec2_bezier3(struct vec2 v0, struct vec2 v1, struct vec2 v2, double f)
 {
 	struct vec2 result;
-	vec2_bezier3((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2, f);
+	vec2_bezier3((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2, f);
 	return result;
 }
 
-struct vec2 svec2_bezier4(struct vec2 v0, struct vec2 v1, struct vec2 v2, struct vec2 v3, mfloat_t f)
+struct vec2 svec2_bezier4(struct vec2 v0, struct vec2 v1, struct vec2 v2, struct vec2 v3, double f)
 {
 	struct vec2 result;
-	vec2_bezier4((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2, (mfloat_t *)&v3, f);
+	vec2_bezier4((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2, (double *)&v3, f);
 	return result;
 }
 
-mfloat_t svec2_angle(struct vec2 v0)
+double svec2_angle(struct vec2 v0)
 {
-	return vec2_angle((mfloat_t *)&v0);
+	return vec2_angle((double *)&v0);
 }
 
-mfloat_t svec2_length(struct vec2 v0)
+double svec2_length(struct vec2 v0)
 {
-	return vec2_length((mfloat_t *)&v0);
+	return vec2_length((double *)&v0);
 }
 
-mfloat_t svec2_length_squared(struct vec2 v0)
+double svec2_length_squared(struct vec2 v0)
 {
-	return vec2_length_squared((mfloat_t *)&v0);
+	return vec2_length_squared((double *)&v0);
 }
 
-mfloat_t svec2_distance(struct vec2 v0, struct vec2 v1)
+double svec2_distance(struct vec2 v0, struct vec2 v1)
 {
-	return vec2_distance((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec2_distance((double *)&v0, (double *)&v1);
 }
 
-mfloat_t svec2_distance_squared(struct vec2 v0, struct vec2 v1)
+double svec2_distance_squared(struct vec2 v0, struct vec2 v1)
 {
-	return vec2_distance_squared((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec2_distance_squared((double *)&v0, (double *)&v1);
 }
 
 bool svec3_is_zero(struct vec3 v0)
 {
-	return vec3_is_zero((mfloat_t *)&v0);
+	return vec3_is_zero((double *)&v0);
 }
 
 bool svec3_is_equal(struct vec3 v0, struct vec3 v1)
 {
-	return vec3_is_equal((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec3_is_equal((double *)&v0, (double *)&v1);
 }
 
-struct vec3 svec3(mfloat_t x, mfloat_t y, mfloat_t z)
+struct vec3 svec3(double x, double y, double z)
 {
 	struct vec3 result;
-	vec3((mfloat_t *)&result, x, y, z);
+	vec3((double *)&result, x, y, z);
 	return result;
 }
 
 struct vec3 svec3_assign(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_assign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_assign((double *)&result, (double *)&v0);
 	return result;
 }
 
@@ -4265,7 +4265,7 @@ struct vec3 svec3_assign(struct vec3 v0)
 struct vec3 svec3_assign_vec3i(struct vec3i v0)
 {
 	struct vec3 result;
-	vec3_assign_vec3i((mfloat_t *)&result, (mint_t *)&v0);
+	vec3_assign_vec3i((double *)&result, (mint_t *)&v0);
 	return result;
 }
 #endif
@@ -4273,266 +4273,266 @@ struct vec3 svec3_assign_vec3i(struct vec3i v0)
 struct vec3 svec3_zero(void)
 {
 	struct vec3 result;
-	vec3_zero((mfloat_t *)&result);
+	vec3_zero((double *)&result);
 	return result;
 }
 
 struct vec3 svec3_one(void)
 {
 	struct vec3 result;
-	vec3_one((mfloat_t *)&result);
+	vec3_one((double *)&result);
 	return result;
 }
 
 struct vec3 svec3_sign(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_sign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_sign((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_add(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_add((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_add((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec3 svec3_add_f(struct vec3 v0, mfloat_t f)
+struct vec3 svec3_add_f(struct vec3 v0, double f)
 {
 	struct vec3 result;
-	vec3_add_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec3_add_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec3 svec3_subtract(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_subtract((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_subtract((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec3 svec3_subtract_f(struct vec3 v0, mfloat_t f)
+struct vec3 svec3_subtract_f(struct vec3 v0, double f)
 {
 	struct vec3 result;
-	vec3_subtract_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec3_subtract_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec3 svec3_multiply(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_multiply((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_multiply((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec3 svec3_multiply_f(struct vec3 v0, mfloat_t f)
+struct vec3 svec3_multiply_f(struct vec3 v0, double f)
 {
 	struct vec3 result;
-	vec3_multiply_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec3_multiply_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec3 svec3_multiply_mat3(struct vec3 v0, struct mat3 m0)
 {
 	struct vec3 result;
-	vec3_multiply_mat3((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&m0);
+	vec3_multiply_mat3((double *)&result, (double *)&v0, (double *)&m0);
 	return result;
 }
 
 struct vec3 svec3_divide(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_divide((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_divide((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec3 svec3_divide_f(struct vec3 v0, mfloat_t f)
+struct vec3 svec3_divide_f(struct vec3 v0, double f)
 {
 	struct vec3 result;
-	vec3_divide_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec3_divide_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec3 svec3_snap(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_snap((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_snap((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec3 svec3_snap_f(struct vec3 v0, mfloat_t f)
+struct vec3 svec3_snap_f(struct vec3 v0, double f)
 {
 	struct vec3 result;
-	vec3_snap_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec3_snap_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec3 svec3_negative(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_negative((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_negative((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_abs(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_abs((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_abs((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_floor(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_floor((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_floor((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_ceil(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_ceil((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_ceil((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_round(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_round((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_round((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec3 svec3_max(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_max((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_max((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec3 svec3_min(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_min((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_min((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec3 svec3_clamp(struct vec3 v0, struct vec3 v1, struct vec3 v2)
 {
 	struct vec3 result;
-	vec3_clamp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2);
+	vec3_clamp((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2);
 	return result;
 }
 
 struct vec3 svec3_cross(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_cross((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_cross((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec3 svec3_normalize(struct vec3 v0)
 {
 	struct vec3 result;
-	vec3_normalize((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec3_normalize((double *)&result, (double *)&v0);
 	return result;
 }
 
-mfloat_t svec3_dot(struct vec3 v0, struct vec3 v1)
+double svec3_dot(struct vec3 v0, struct vec3 v1)
 {
-	return vec3_dot((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec3_dot((double *)&v0, (double *)&v1);
 }
 
 struct vec3 svec3_project(struct vec3 v0, struct vec3 v1)
 {
 	struct vec3 result;
-	vec3_project((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec3_project((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec3 svec3_slide(struct vec3 v0, struct vec3 normal)
 {
 	struct vec3 result;
-	vec3_slide((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&normal);
+	vec3_slide((double *)&result, (double *)&v0, (double *)&normal);
 	return result;
 }
 
 struct vec3 svec3_reflect(struct vec3 v0, struct vec3 normal)
 {
 	struct vec3 result;
-	vec3_reflect((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&normal);
+	vec3_reflect((double *)&result, (double *)&v0, (double *)&normal);
 	return result;
 }
 
-struct vec3 svec3_rotate(struct vec3 v0, struct vec3 ra, mfloat_t f)
+struct vec3 svec3_rotate(struct vec3 v0, struct vec3 ra, double f)
 {
 	struct vec3 result;
-	vec3_lerp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&ra, f);
+	vec3_lerp((double *)&result, (double *)&v0, (double *)&ra, f);
 	return result;
 }
 
-struct vec3 svec3_lerp(struct vec3 v0, struct vec3 v1, mfloat_t f)
+struct vec3 svec3_lerp(struct vec3 v0, struct vec3 v1, double f)
 {
 	struct vec3 result;
-	vec3_lerp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, f);
+	vec3_lerp((double *)&result, (double *)&v0, (double *)&v1, f);
 	return result;
 }
 
-struct vec3 svec3_bezier3(struct vec3 v0, struct vec3 v1, struct vec3 v2, mfloat_t f)
+struct vec3 svec3_bezier3(struct vec3 v0, struct vec3 v1, struct vec3 v2, double f)
 {
 	struct vec3 result;
-	vec3_bezier3((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2, f);
+	vec3_bezier3((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2, f);
 	return result;
 }
 
-struct vec3 svec3_bezier4(struct vec3 v0, struct vec3 v1, struct vec3 v2, struct vec3 v3, mfloat_t f)
+struct vec3 svec3_bezier4(struct vec3 v0, struct vec3 v1, struct vec3 v2, struct vec3 v3, double f)
 {
 	struct vec3 result;
-	vec3_bezier4((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2, (mfloat_t *)&v3, f);
+	vec3_bezier4((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2, (double *)&v3, f);
 	return result;
 }
 
-mfloat_t svec3_length(struct vec3 v0)
+double svec3_length(struct vec3 v0)
 {
-	return vec3_length((mfloat_t *)&v0);
+	return vec3_length((double *)&v0);
 }
 
-mfloat_t svec3_length_squared(struct vec3 v0)
+double svec3_length_squared(struct vec3 v0)
 {
-	return vec3_length_squared((mfloat_t *)&v0);
+	return vec3_length_squared((double *)&v0);
 }
 
-mfloat_t svec3_distance(struct vec3 v0, struct vec3 v1)
+double svec3_distance(struct vec3 v0, struct vec3 v1)
 {
-	return vec3_distance((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec3_distance((double *)&v0, (double *)&v1);
 }
 
-mfloat_t svec3_distance_squared(struct vec3 v0, struct vec3 v1)
+double svec3_distance_squared(struct vec3 v0, struct vec3 v1)
 {
-	return vec3_distance_squared((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec3_distance_squared((double *)&v0, (double *)&v1);
 }
 
 bool svec4_is_zero(struct vec4 v0)
 {
-	return vec4_is_zero((mfloat_t *)&v0);
+	return vec4_is_zero((double *)&v0);
 }
 
 bool svec4_is_equal(struct vec4 v0, struct vec4 v1)
 {
-	return vec4_is_equal((mfloat_t *)&v0, (mfloat_t *)&v1);
+	return vec4_is_equal((double *)&v0, (double *)&v1);
 }
 
-struct vec4 svec4(mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+struct vec4 svec4(double x, double y, double z, double w)
 {
 	struct vec4 result;
-	vec4((mfloat_t *)&result, x, y, z, w);
+	vec4((double *)&result, x, y, z, w);
 	return result;
 }
 
 struct vec4 svec4_assign(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_assign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_assign((double *)&result, (double *)&v0);
 	return result;
 }
 
@@ -4540,7 +4540,7 @@ struct vec4 svec4_assign(struct vec4 v0)
 struct vec4 svec4_assign_vec4i(struct vec4i v0)
 {
 	struct vec4 result;
-	vec4_assign_vec4i((mfloat_t *)&result, (mint_t *)&v0);
+	vec4_assign_vec4i((double *)&result, (mint_t *)&v0);
 	return result;
 }
 #endif
@@ -4548,745 +4548,745 @@ struct vec4 svec4_assign_vec4i(struct vec4i v0)
 struct vec4 svec4_zero(void)
 {
 	struct vec4 result;
-	vec4_zero((mfloat_t *)&result);
+	vec4_zero((double *)&result);
 	return result;
 }
 
 struct vec4 svec4_one(void)
 {
 	struct vec4 result;
-	vec4_one((mfloat_t *)&result);
+	vec4_one((double *)&result);
 	return result;
 }
 
 struct vec4 svec4_sign(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_sign((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_sign((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_add(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_add((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_add((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec4 svec4_add_f(struct vec4 v0, mfloat_t f)
+struct vec4 svec4_add_f(struct vec4 v0, double f)
 {
 	struct vec4 result;
-	vec4_add_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec4_add_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec4 svec4_subtract(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_subtract((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_subtract((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec4 svec4_subtract_f(struct vec4 v0, mfloat_t f)
+struct vec4 svec4_subtract_f(struct vec4 v0, double f)
 {
 	struct vec4 result;
-	vec4_subtract_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec4_subtract_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec4 svec4_multiply(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_multiply((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_multiply((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec4 svec4_multiply_f(struct vec4 v0, mfloat_t f)
+struct vec4 svec4_multiply_f(struct vec4 v0, double f)
 {
 	struct vec4 result;
-	vec4_multiply_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec4_multiply_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec4 svec4_multiply_mat4(struct vec4 v0, struct mat4 m0)
 {
 	struct vec4 result;
-	vec4_multiply_mat4((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&m0);
+	vec4_multiply_mat4((double *)&result, (double *)&v0, (double *)&m0);
 	return result;
 }
 
 struct vec4 svec4_divide(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_divide((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_divide((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec4 svec4_divide_f(struct vec4 v0, mfloat_t f)
+struct vec4 svec4_divide_f(struct vec4 v0, double f)
 {
 	struct vec4 result;
-	vec4_divide_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec4_divide_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec4 svec4_snap(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_snap((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_snap((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
-struct vec4 svec4_snap_f(struct vec4 v0, mfloat_t f)
+struct vec4 svec4_snap_f(struct vec4 v0, double f)
 {
 	struct vec4 result;
-	vec4_snap_f((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	vec4_snap_f((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct vec4 svec4_negative(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_negative((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_negative((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_abs(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_abs((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_abs((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_floor(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_floor((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_floor((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_ceil(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_ceil((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_ceil((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_round(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_round((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_round((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct vec4 svec4_max(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_max((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_max((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec4 svec4_min(struct vec4 v0, struct vec4 v1)
 {
 	struct vec4 result;
-	vec4_min((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	vec4_min((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct vec4 svec4_clamp(struct vec4 v0, struct vec4 v1, struct vec4 v2)
 {
 	struct vec4 result;
-	vec4_clamp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, (mfloat_t *)&v2);
+	vec4_clamp((double *)&result, (double *)&v0, (double *)&v1, (double *)&v2);
 	return result;
 }
 
 struct vec4 svec4_normalize(struct vec4 v0)
 {
 	struct vec4 result;
-	vec4_normalize((mfloat_t *)&result, (mfloat_t *)&v0);
+	vec4_normalize((double *)&result, (double *)&v0);
 	return result;
 }
 
-struct vec4 svec4_lerp(struct vec4 v0, struct vec4 v1, mfloat_t f)
+struct vec4 svec4_lerp(struct vec4 v0, struct vec4 v1, double f)
 {
 	struct vec4 result;
-	vec4_lerp((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1, f);
+	vec4_lerp((double *)&result, (double *)&v0, (double *)&v1, f);
 	return result;
 }
 
 bool squat_is_zero(struct quat q0)
 {
-	return quat_is_zero((mfloat_t *)&q0);
+	return quat_is_zero((double *)&q0);
 }
 
 bool squat_is_equal(struct quat q0, struct quat q1)
 {
-	return quat_is_equal((mfloat_t *)&q0, (mfloat_t *)&q1);
+	return quat_is_equal((double *)&q0, (double *)&q1);
 }
 
-struct quat squat(mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+struct quat squat(double x, double y, double z, double w)
 {
 	struct quat result;
-	quat((mfloat_t *)&result, x, y, z, w);
+	quat((double *)&result, x, y, z, w);
 	return result;
 }
 
 struct quat squat_assign(struct quat q0)
 {
 	struct quat result;
-	quat_assign((mfloat_t *)&result, (mfloat_t *)&q0);
+	quat_assign((double *)&result, (double *)&q0);
 	return result;
 }
 
 struct quat squat_zero(void)
 {
 	struct quat result;
-	quat_zero((mfloat_t *)&result);
+	quat_zero((double *)&result);
 	return result;
 }
 
 struct quat squat_null(void)
 {
 	struct quat result;
-	quat_null((mfloat_t *)&result);
+	quat_null((double *)&result);
 	return result;
 }
 
 struct quat squat_multiply(struct quat q0, struct quat q1)
 {
 	struct quat result;
-	quat_multiply((mfloat_t *)&result, (mfloat_t *)&q0, (mfloat_t *)&q1);
+	quat_multiply((double *)&result, (double *)&q0, (double *)&q1);
 	return result;
 }
 
-struct quat squat_multiply_f(struct quat q0, mfloat_t f)
+struct quat squat_multiply_f(struct quat q0, double f)
 {
 	struct quat result;
-	quat_multiply_f((mfloat_t *)&result, (mfloat_t *)&q0, f);
+	quat_multiply_f((double *)&result, (double *)&q0, f);
 	return result;
 }
 
 struct quat squat_divide(struct quat q0, struct quat q1)
 {
 	struct quat result;
-	quat_divide((mfloat_t *)&result, (mfloat_t *)&q0, (mfloat_t *)&q1);
+	quat_divide((double *)&result, (double *)&q0, (double *)&q1);
 	return result;
 }
 
-struct quat squat_divide_f(struct quat q0, mfloat_t f)
+struct quat squat_divide_f(struct quat q0, double f)
 {
 	struct quat result;
-	quat_divide_f((mfloat_t *)&result, (mfloat_t *)&q0, f);
+	quat_divide_f((double *)&result, (double *)&q0, f);
 	return result;
 }
 
 struct quat squat_negative(struct quat q0)
 {
 	struct quat result;
-	quat_negative((mfloat_t *)&result, (mfloat_t *)&q0);
+	quat_negative((double *)&result, (double *)&q0);
 	return result;
 }
 
 struct quat squat_conjugate(struct quat q0)
 {
 	struct quat result;
-	quat_conjugate((mfloat_t *)&result, (mfloat_t *)&q0);
+	quat_conjugate((double *)&result, (double *)&q0);
 	return result;
 }
 
 struct quat squat_inverse(struct quat q0)
 {
 	struct quat result;
-	quat_inverse((mfloat_t *)&result, (mfloat_t *)&q0);
+	quat_inverse((double *)&result, (double *)&q0);
 	return result;
 }
 
 struct quat squat_normalize(struct quat q0)
 {
 	struct quat result;
-	quat_normalize((mfloat_t *)&result, (mfloat_t *)&q0);
+	quat_normalize((double *)&result, (double *)&q0);
 	return result;
 }
 
-mfloat_t squat_dot(struct quat q0, struct quat q1)
+double squat_dot(struct quat q0, struct quat q1)
 {
-	return quat_dot((mfloat_t *)&q0, (mfloat_t *)&q1);
+	return quat_dot((double *)&q0, (double *)&q1);
 }
 
-struct quat squat_power(struct quat q0, mfloat_t exponent)
+struct quat squat_power(struct quat q0, double exponent)
 {
 	struct quat result;
-	quat_power((mfloat_t *)&result, (mfloat_t *)&q0, exponent);
+	quat_power((double *)&result, (double *)&q0, exponent);
 	return result;
 }
 
-struct quat squat_from_axis_angle(struct vec3 v0, mfloat_t angle)
+struct quat squat_from_axis_angle(struct vec3 v0, double angle)
 {
 	struct quat result;
-	quat_from_axis_angle((mfloat_t *)&result, (mfloat_t *)&v0, angle);
+	quat_from_axis_angle((double *)&result, (double *)&v0, angle);
 	return result;
 }
 
 struct quat squat_from_vec3(struct vec3 v0, struct vec3 v1)
 {
 	struct quat result;
-	quat_from_vec3((mfloat_t *)&result, (mfloat_t *)&v0, (mfloat_t *)&v1);
+	quat_from_vec3((double *)&result, (double *)&v0, (double *)&v1);
 	return result;
 }
 
 struct quat squat_from_mat4(struct mat4 m0)
 {
 	struct quat result;
-	quat_from_mat4((mfloat_t *)&result, (mfloat_t *)&m0);
+	quat_from_mat4((double *)&result, (double *)&m0);
 	return result;
 }
 
-struct quat squat_lerp(struct quat q0, struct quat q1, mfloat_t f)
+struct quat squat_lerp(struct quat q0, struct quat q1, double f)
 {
 	struct quat result;
-	quat_lerp((mfloat_t *)&result, (mfloat_t *)&q0, (mfloat_t *)&q1, f);
+	quat_lerp((double *)&result, (double *)&q0, (double *)&q1, f);
 	return result;
 }
 
-struct quat squat_slerp(struct quat q0, struct quat q1, mfloat_t f)
+struct quat squat_slerp(struct quat q0, struct quat q1, double f)
 {
 	struct quat result;
-	quat_slerp((mfloat_t *)&result, (mfloat_t *)&q0, (mfloat_t *)&q1, f);
+	quat_slerp((double *)&result, (double *)&q0, (double *)&q1, f);
 	return result;
 }
 
-mfloat_t squat_length(struct quat q0)
+double squat_length(struct quat q0)
 {
-	return quat_length((mfloat_t *)&q0);
+	return quat_length((double *)&q0);
 }
 
-mfloat_t squat_length_squared(struct quat q0)
+double squat_length_squared(struct quat q0)
 {
-	return quat_length_squared((mfloat_t *)&q0);
+	return quat_length_squared((double *)&q0);
 }
 
-mfloat_t squat_angle(struct quat q0, struct quat q1)
+double squat_angle(struct quat q0, struct quat q1)
 {
-	return quat_angle((mfloat_t *)&q0, (mfloat_t *)&q1);
+	return quat_angle((double *)&q0, (double *)&q1);
 }
 
-struct mat2 smat2(mfloat_t m11, mfloat_t m12, mfloat_t m21, mfloat_t m22)
+struct mat2 smat2(double m11, double m12, double m21, double m22)
 {
 	struct mat2 result;
-	mat2((mfloat_t *)&result, m11, m12, m21, m22);
+	mat2((double *)&result, m11, m12, m21, m22);
 	return result;
 }
 
 struct mat2 smat2_zero(void)
 {
 	struct mat2 result;
-	mat2_zero((mfloat_t *)&result);
+	mat2_zero((double *)&result);
 	return result;
 }
 
 struct mat2 smat2_identity(void)
 {
 	struct mat2 result;
-	mat2_identity((mfloat_t *)&result);
+	mat2_identity((double *)&result);
 	return result;
 }
 
-mfloat_t smat2_determinant(struct mat2 m0)
+double smat2_determinant(struct mat2 m0)
 {
-	return mat2_determinant((mfloat_t *)&m0);
+	return mat2_determinant((double *)&m0);
 }
 
 struct mat2 smat2_assign(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_assign((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_assign((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_negative(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_negative((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_negative((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_transpose(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_transpose((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_transpose((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_cofactor(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_cofactor((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_cofactor((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_adjugate(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_adjugate((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_adjugate((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_multiply(struct mat2 m0, struct mat2 m1)
 {
 	struct mat2 result;
-	mat2_multiply((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1);
+	mat2_multiply((double *)&result, (double *)&m0, (double *)&m1);
 	return result;
 }
 
-struct mat2 smat2_multiply_f(struct mat2 m0, mfloat_t f)
+struct mat2 smat2_multiply_f(struct mat2 m0, double f)
 {
 	struct mat2 result;
-	mat2_multiply_f((mfloat_t *)&result, (mfloat_t *)&m0, f);
+	mat2_multiply_f((double *)&result, (double *)&m0, f);
 	return result;
 }
 
 struct mat2 smat2_inverse(struct mat2 m0)
 {
 	struct mat2 result;
-	mat2_inverse((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat2_inverse((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat2 smat2_scaling(struct vec2 v0)
 {
 	struct mat2 result;
-	mat2_scaling((mfloat_t *)&result, (mfloat_t *)&v0);
+	mat2_scaling((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct mat2 smat2_scale(struct mat2 m0, struct vec2 v0)
 {
 	struct mat2 result;
-	mat2_scale((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat2_scale((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
-struct mat2 smat2_rotation_z(mfloat_t f)
+struct mat2 smat2_rotation_z(double f)
 {
 	struct mat2 result;
-	mat2_rotation_z((mfloat_t *)&result, f);
+	mat2_rotation_z((double *)&result, f);
 	return result;
 }
 
-struct mat2 smat2_lerp(struct mat2 m0, struct mat2 m1, mfloat_t f)
+struct mat2 smat2_lerp(struct mat2 m0, struct mat2 m1, double f)
 {
 	struct mat2 result;
-	mat2_lerp((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1, f);
+	mat2_lerp((double *)&result, (double *)&m0, (double *)&m1, f);
 	return result;
 }
 
-struct mat3 smat3(mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m31, mfloat_t m32, mfloat_t m33)
+struct mat3 smat3(double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
 {
 	struct mat3 result;
-	mat3((mfloat_t *)&result, m11, m12, m13, m21, m22, m23, m31, m32, m33);
+	mat3((double *)&result, m11, m12, m13, m21, m22, m23, m31, m32, m33);
 	return result;
 }
 
 struct mat3 smat3_zero(void)
 {
 	struct mat3 result;
-	mat3_zero((mfloat_t *)&result);
+	mat3_zero((double *)&result);
 	return result;
 }
 
 struct mat3 smat3_identity(void)
 {
 	struct mat3 result;
-	mat3_identity((mfloat_t *)&result);
+	mat3_identity((double *)&result);
 	return result;
 }
 
-mfloat_t smat3_determinant(struct mat3 m0)
+double smat3_determinant(struct mat3 m0)
 {
-	return mat3_determinant((mfloat_t *)&m0);
+	return mat3_determinant((double *)&m0);
 }
 
 struct mat3 smat3_assign(struct mat3 m0)
 {
 	struct mat3 result;
-	mat3_assign((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat3_assign((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat3 smat3_negative(struct mat3 m0)
 {
 	struct mat3 result;
-	mat3_negative((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat3_negative((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat3 smat3_transpose(struct mat3 m0)
 {
 	struct mat3 result;
-	mat3_transpose((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat3_transpose((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat3 smat3_cofactor(struct mat3 m0)
 {
 	struct mat3 result;
-	mat3_cofactor((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat3_cofactor((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat3 smat3_multiply(struct mat3 m0, struct mat3 m1)
 {
 	struct mat3 result;
-	mat3_multiply((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1);
+	mat3_multiply((double *)&result, (double *)&m0, (double *)&m1);
 	return result;
 }
 
-struct mat3 smat3_multiply_f(struct mat3 m0, mfloat_t f)
+struct mat3 smat3_multiply_f(struct mat3 m0, double f)
 {
 	struct mat3 result;
-	mat3_multiply_f((mfloat_t *)&result, (mfloat_t *)&m0, f);
+	mat3_multiply_f((double *)&result, (double *)&m0, f);
 	return result;
 }
 
 struct mat3 smat3_inverse(struct mat3 m0)
 {
 	struct mat3 result;
-	mat3_inverse((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat3_inverse((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat3 smat3_scaling(struct vec3 v0)
 {
 	struct mat3 result;
-	mat3_scaling((mfloat_t *)&result, (mfloat_t *)&v0);
+	mat3_scaling((double *)&result, (double *)&v0);
 	return result;
 }
 
 struct mat3 smat3_scale(struct mat3 m0, struct vec3 v0)
 {
 	struct mat3 result;
-	mat3_scale((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat3_scale((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
-struct mat3 smat3_rotation_x(mfloat_t f)
+struct mat3 smat3_rotation_x(double f)
 {
 	struct mat3 result;
-	mat3_rotation_x((mfloat_t *)&result, f);
+	mat3_rotation_x((double *)&result, f);
 	return result;
 }
 
-struct mat3 smat3_rotation_y(mfloat_t f)
+struct mat3 smat3_rotation_y(double f)
 {
 	struct mat3 result;
-	mat3_rotation_y((mfloat_t *)&result, f);
+	mat3_rotation_y((double *)&result, f);
 	return result;
 }
 
-struct mat3 smat3_rotation_z(mfloat_t f)
+struct mat3 smat3_rotation_z(double f)
 {
 	struct mat3 result;
-	mat3_rotation_z((mfloat_t *)&result, f);
+	mat3_rotation_z((double *)&result, f);
 	return result;
 }
 
-struct mat3 smat3_rotation_axis(struct vec3 v0, mfloat_t f)
+struct mat3 smat3_rotation_axis(struct vec3 v0, double f)
 {
 	struct mat3 result;
-	mat3_rotation_axis((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	mat3_rotation_axis((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct mat3 smat3_rotation_quat(struct quat q0)
 {
 	struct mat3 result;
-	mat3_rotation_quat((mfloat_t *)&result, (mfloat_t *)&q0);
+	mat3_rotation_quat((double *)&result, (double *)&q0);
 	return result;
 }
 
-struct mat3 smat3_lerp(struct mat3 m0, struct mat3 m1, mfloat_t f)
+struct mat3 smat3_lerp(struct mat3 m0, struct mat3 m1, double f)
 {
 	struct mat3 result;
-	mat3_lerp((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1, f);
+	mat3_lerp((double *)&result, (double *)&m0, (double *)&m1, f);
 	return result;
 }
 
-struct mat4 smat4(mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m14, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m24, mfloat_t m31, mfloat_t m32, mfloat_t m33, mfloat_t m34, mfloat_t m41, mfloat_t m42, mfloat_t m43, mfloat_t m44)
+struct mat4 smat4(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double m41, double m42, double m43, double m44)
 {
 	struct mat4 result;
-	mat4((mfloat_t *)&result, m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44);
+	mat4((double *)&result, m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44);
 	return result;
 }
 
 struct mat4 smat4_zero(void)
 {
 	struct mat4 result;
-	mat4_zero((mfloat_t *)&result);
+	mat4_zero((double *)&result);
 	return result;
 }
 
 struct mat4 smat4_identity(void)
 {
 	struct mat4 result;
-	mat4_identity((mfloat_t *)&result);
+	mat4_identity((double *)&result);
 	return result;
 }
 
-mfloat_t smat4_determinant(struct mat4 m0)
+double smat4_determinant(struct mat4 m0)
 {
-	return mat4_determinant((mfloat_t *)&m0);
+	return mat4_determinant((double *)&m0);
 }
 
 struct mat4 smat4_assign(struct mat4 m0)
 {
 	struct mat4 result;
-	mat4_assign((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat4_assign((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat4 smat4_negative(struct mat4 m0)
 {
 	struct mat4 result;
-	mat4_negative((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat4_negative((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat4 smat4_transpose(struct mat4 m0)
 {
 	struct mat4 result;
-	mat4_transpose((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat4_transpose((double *)&result, (double *)&m0);
 	return result;
 }
 
 struct mat4 smat4_cofactor(struct mat4 m0)
 {
 	struct mat4 result;
-	mat4_cofactor((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat4_cofactor((double *)&result, (double *)&m0);
 	return result;
 }
 
-struct mat4 smat4_rotation_x(mfloat_t f)
+struct mat4 smat4_rotation_x(double f)
 {
 	struct mat4 result;
-	mat4_rotation_x((mfloat_t *)&result, f);
+	mat4_rotation_x((double *)&result, f);
 	return result;
 }
 
-struct mat4 smat4_rotation_y(mfloat_t f)
+struct mat4 smat4_rotation_y(double f)
 {
 	struct mat4 result;
-	mat4_rotation_y((mfloat_t *)&result, f);
+	mat4_rotation_y((double *)&result, f);
 	return result;
 }
 
-struct mat4 smat4_rotation_z(mfloat_t f)
+struct mat4 smat4_rotation_z(double f)
 {
 	struct mat4 result;
-	mat4_rotation_z((mfloat_t *)&result, f);
+	mat4_rotation_z((double *)&result, f);
 	return result;
 }
 
-struct mat4 smat4_rotation_axis(struct vec3 v0, mfloat_t f)
+struct mat4 smat4_rotation_axis(struct vec3 v0, double f)
 {
 	struct mat4 result;
-	mat4_rotation_axis((mfloat_t *)&result, (mfloat_t *)&v0, f);
+	mat4_rotation_axis((double *)&result, (double *)&v0, f);
 	return result;
 }
 
 struct mat4 smat4_rotation_quat(struct quat q0)
 {
 	struct mat4 result;
-	mat4_rotation_quat((mfloat_t *)&result, (mfloat_t *)&q0);
+	mat4_rotation_quat((double *)&result, (double *)&q0);
 	return result;
 }
 
 struct mat4 smat4_translation(struct mat4 m0, struct vec3 v0)
 {
 	struct mat4 result;
-	mat4_translation((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat4_translation((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
 struct mat4 smat4_translate(struct mat4 m0, struct vec3 v0)
 {
 	struct mat4 result;
-	mat4_translate((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat4_translate((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
 struct mat4 smat4_scaling(struct mat4 m0, struct vec3 v0)
 {
 	struct mat4 result;
-	mat4_scaling((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat4_scaling((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
 struct mat4 smat4_scale(struct mat4 m0, struct vec3 v0)
 {
 	struct mat4 result;
-	mat4_scale((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&v0);
+	mat4_scale((double *)&result, (double *)&m0, (double *)&v0);
 	return result;
 }
 
 struct mat4 smat4_multiply(struct mat4 m0, struct mat4 m1)
 {
 	struct mat4 result;
-	mat4_multiply((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1);
+	mat4_multiply((double *)&result, (double *)&m0, (double *)&m1);
 	return result;
 }
 
-struct mat4 smat4_multiply_f(struct mat4 m0, mfloat_t f)
+struct mat4 smat4_multiply_f(struct mat4 m0, double f)
 {
 	struct mat4 result;
-	mat4_multiply_f((mfloat_t *)&result, (mfloat_t *)&m0, f);
+	mat4_multiply_f((double *)&result, (double *)&m0, f);
 	return result;
 }
 
 struct mat4 smat4_inverse(struct mat4 m0)
 {
 	struct mat4 result;
-	mat4_inverse((mfloat_t *)&result, (mfloat_t *)&m0);
+	mat4_inverse((double *)&result, (double *)&m0);
 	return result;
 }
 
-struct mat4 smat4_lerp(struct mat4 m0, struct mat4 m1, mfloat_t f)
+struct mat4 smat4_lerp(struct mat4 m0, struct mat4 m1, double f)
 {
 	struct mat4 result;
-	mat4_lerp((mfloat_t *)&result, (mfloat_t *)&m0, (mfloat_t *)&m1, f);
+	mat4_lerp((double *)&result, (double *)&m0, (double *)&m1, f);
 	return result;
 }
 
 struct mat4 smat4_look_at(struct vec3 position, struct vec3 target, struct vec3 up)
 {
 	struct mat4 result;
-	mat4_look_at((mfloat_t *)&result, (mfloat_t *)&position, (mfloat_t *)&target, (mfloat_t *)&up);
+	mat4_look_at((double *)&result, (double *)&position, (double *)&target, (double *)&up);
 	return result;
 }
 
-struct mat4 smat4_ortho(mfloat_t l, mfloat_t r, mfloat_t b, mfloat_t t, mfloat_t n, mfloat_t f)
+struct mat4 smat4_ortho(double l, double r, double b, double t, double n, double f)
 {
 	struct mat4 result;
-	mat4_ortho((mfloat_t *)&result, l, r, b, t, n, f);
+	mat4_ortho((double *)&result, l, r, b, t, n, f);
 	return result;
 }
 
-struct mat4 smat4_perspective(mfloat_t fov_y, mfloat_t aspect, mfloat_t n, mfloat_t f)
+struct mat4 smat4_perspective(double fov_y, double aspect, double n, double f)
 {
 	struct mat4 result;
-	mat4_perspective((mfloat_t *)&result, fov_y, aspect, n, f);
+	mat4_perspective((double *)&result, fov_y, aspect, n, f);
 	return result;
 }
 
-struct mat4 smat4_perspective_fov(mfloat_t fov, mfloat_t w, mfloat_t h, mfloat_t n, mfloat_t f)
+struct mat4 smat4_perspective_fov(double fov, double w, double h, double n, double f)
 {
 	struct mat4 result;
-	mat4_perspective_fov((mfloat_t *)&result, fov, w, h, n, f);
+	mat4_perspective_fov((double *)&result, fov, w, h, n, f);
 	return result;
 }
 
-struct mat4 smat4_perspective_infinite(mfloat_t fov_y, mfloat_t aspect, mfloat_t n)
+struct mat4 smat4_perspective_infinite(double fov_y, double aspect, double n)
 {
 	struct mat4 result;
-	mat4_perspective_infinite((mfloat_t *)&result, fov_y, aspect, n);
+	mat4_perspective_infinite((double *)&result, fov_y, aspect, n);
 	return result;
 }
 #endif
@@ -5317,7 +5317,7 @@ struct vec2i *psvec2i_assign(struct vec2i *result, struct vec2i *v0)
 #if defined(MATHC_USE_FLOATING_POINT)
 struct vec2i *psvec2i_assign_vec2(struct vec2i *result, struct vec2 *v0)
 {
-	return (struct vec2i *)vec2i_assign_vec2((mint_t *)result, (mfloat_t *)v0);
+	return (struct vec2i *)vec2i_assign_vec2((mint_t *)result, (double *)v0);
 }
 #endif
 
@@ -5439,7 +5439,7 @@ struct vec3i *psvec3i_assign(struct vec3i *result, struct vec3i *v0)
 #if defined(MATHC_USE_FLOATING_POINT)
 struct vec3i *psvec3i_assign_vec3(struct vec3i *result, struct vec3 *v0)
 {
-	return (struct vec3i *)vec3i_assign_vec3((mint_t *)result, (mfloat_t *)v0);
+	return (struct vec3i *)vec3i_assign_vec3((mint_t *)result, (double *)v0);
 }
 #endif
 
@@ -5561,7 +5561,7 @@ struct vec4i *psvec4i_assign(struct vec4i *result, struct vec4i *v0)
 #if defined(MATHC_USE_FLOATING_POINT)
 struct vec4i *psvec4i_assign_vec4(struct vec4i *result, struct vec4 *v0)
 {
-	return (struct vec4i *)vec4i_assign_vec4((mint_t *)result, (mfloat_t *)v0);
+	return (struct vec4i *)vec4i_assign_vec4((mint_t *)result, (double *)v0);
 }
 #endif
 
@@ -5659,1011 +5659,1011 @@ struct vec4i *psvec4i_clamp(struct vec4i *result, struct vec4i *v0, struct vec4i
 #if defined(MATHC_USE_FLOATING_POINT)
 bool psvec2_is_zero(struct vec2 *v0)
 {
-	return vec2_is_zero((mfloat_t *)v0);
+	return vec2_is_zero((double *)v0);
 }
 
 bool psvec2_is_equal(struct vec2 *v0, struct vec2 *v1)
 {
-	return vec2_is_equal((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec2_is_equal((double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2(struct vec2 *result, mfloat_t x, mfloat_t y)
+struct vec2 *psvec2(struct vec2 *result, double x, double y)
 {
-	return (struct vec2 *)vec2((mfloat_t *)result, x, y);
+	return (struct vec2 *)vec2((double *)result, x, y);
 }
 
 struct vec2 *psvec2_assign(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_assign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_assign((double *)result, (double *)v0);
 }
 
 #if defined(MATHC_USE_INT)
 struct vec2 *psvec2_assign_vec2i(struct vec2 *result, struct vec2i *v0)
 {
-	return (struct vec2 *)vec2_assign_vec2i((mfloat_t *)result, (mint_t *)v0);
+	return (struct vec2 *)vec2_assign_vec2i((double *)result, (mint_t *)v0);
 }
 #endif
 
 struct vec2 *psvec2_zero(struct vec2 *result)
 {
-	return (struct vec2 *)vec2_zero((mfloat_t *)result);
+	return (struct vec2 *)vec2_zero((double *)result);
 }
 
 struct vec2 *psvec2_one(struct vec2 *result)
 {
-	return (struct vec2 *)vec2_one((mfloat_t *)result);
+	return (struct vec2 *)vec2_one((double *)result);
 }
 
 struct vec2 *psvec2_sign(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_sign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_sign((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_add(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_add((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_add((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2_add_f(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_add_f(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_add_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_add_f((double *)result, (double *)v0, f);
 }
 
 struct vec2 *psvec2_subtract(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_subtract((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_subtract((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2_subtract_f(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_subtract_f(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_subtract_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_subtract_f((double *)result, (double *)v0, f);
 }
 
 struct vec2 *psvec2_multiply(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_multiply((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_multiply((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2_multiply_f(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_multiply_f(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_multiply_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_multiply_f((double *)result, (double *)v0, f);
 }
 
 struct vec2 *psvec2_multiply_mat2(struct vec2 *result, struct vec2 *v0, struct mat2 *m0)
 {
-	return (struct vec2 *)vec2_multiply_mat2((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)m0);
+	return (struct vec2 *)vec2_multiply_mat2((double *)result, (double *)v0, (double *)m0);
 }
 
 struct vec2 *psvec2_divide(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_divide((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_divide((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2_divide_f(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_divide_f(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_divide_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_divide_f((double *)result, (double *)v0, f);
 }
 
 struct vec2 *psvec2_snap(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_snap((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_snap((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec2 *psvec2_snap_f(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_snap_f(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_snap_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_snap_f((double *)result, (double *)v0, f);
 }
 
 struct vec2 *psvec2_negative(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_negative((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_negative((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_abs(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_abs((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_abs((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_floor(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_floor((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_floor((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_ceil(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_ceil((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_ceil((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_round(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_round((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_round((double *)result, (double *)v0);
 }
 
 struct vec2 *psvec2_max(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_max((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_max((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec2 *psvec2_min(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_min((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_min((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec2 *psvec2_clamp(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, struct vec2 *v2)
 {
-	return (struct vec2 *)vec2_clamp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2);
+	return (struct vec2 *)vec2_clamp((double *)result, (double *)v0, (double *)v1, (double *)v2);
 }
 
 struct vec2 *psvec2_normalize(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_normalize((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_normalize((double *)result, (double *)v0);
 }
 
-mfloat_t psvec2_dot(struct vec2 *v0, struct vec2 *v1)
+double psvec2_dot(struct vec2 *v0, struct vec2 *v1)
 {
-	return vec2_dot((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec2_dot((double *)v0, (double *)v1);
 }
 
 struct vec2 *psvec2_project(struct vec2 *result, struct vec2 *v0, struct vec2 *v1)
 {
-	return (struct vec2 *)vec2_project((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec2 *)vec2_project((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec2 *psvec2_slide(struct vec2 *result, struct vec2 *v0, struct vec2 *normal)
 {
-	return (struct vec2 *)vec2_slide((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)normal);
+	return (struct vec2 *)vec2_slide((double *)result, (double *)v0, (double *)normal);
 }
 
 struct vec2 *psvec2_reflect(struct vec2 *result, struct vec2 *v0, struct vec2 *normal)
 {
-	return (struct vec2 *)vec2_reflect((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)normal);
+	return (struct vec2 *)vec2_reflect((double *)result, (double *)v0, (double *)normal);
 }
 
 struct vec2 *psvec2_tangent(struct vec2 *result, struct vec2 *v0)
 {
-	return (struct vec2 *)vec2_tangent((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec2 *)vec2_tangent((double *)result, (double *)v0);
 }
 
-struct vec2 *psvec2_rotate(struct vec2 *result, struct vec2 *v0, mfloat_t f)
+struct vec2 *psvec2_rotate(struct vec2 *result, struct vec2 *v0, double f)
 {
-	return (struct vec2 *)vec2_rotate((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec2 *)vec2_rotate((double *)result, (double *)v0, f);
 }
 
-struct vec2 *psvec2_lerp(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, mfloat_t f)
+struct vec2 *psvec2_lerp(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, double f)
 {
-	return (struct vec2 *)vec2_lerp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, f);
+	return (struct vec2 *)vec2_lerp((double *)result, (double *)v0, (double *)v1, f);
 }
 
-struct vec2 *psvec2_bezier3(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, struct vec2 *v2, mfloat_t f)
+struct vec2 *psvec2_bezier3(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, struct vec2 *v2, double f)
 {
-	return (struct vec2 *)vec2_bezier3((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2, f);
+	return (struct vec2 *)vec2_bezier3((double *)result, (double *)v0, (double *)v1, (double *)v2, f);
 }
 
-struct vec2 *psvec2_bezier4(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, struct vec2 *v2, struct vec2 *v3, mfloat_t f)
+struct vec2 *psvec2_bezier4(struct vec2 *result, struct vec2 *v0, struct vec2 *v1, struct vec2 *v2, struct vec2 *v3, double f)
 {
-	return (struct vec2 *)vec2_bezier4((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2, (mfloat_t *)v3, f);
+	return (struct vec2 *)vec2_bezier4((double *)result, (double *)v0, (double *)v1, (double *)v2, (double *)v3, f);
 }
 
-mfloat_t psvec2_angle(struct vec2 *v0)
+double psvec2_angle(struct vec2 *v0)
 {
-	return vec2_angle((mfloat_t *)v0);
+	return vec2_angle((double *)v0);
 }
 
-mfloat_t psvec2_length(struct vec2 *v0)
+double psvec2_length(struct vec2 *v0)
 {
-	return vec2_length((mfloat_t *)v0);
+	return vec2_length((double *)v0);
 }
 
-mfloat_t psvec2_length_squared(struct vec2 *v0)
+double psvec2_length_squared(struct vec2 *v0)
 {
-	return vec2_length_squared((mfloat_t *)v0);
+	return vec2_length_squared((double *)v0);
 }
 
-mfloat_t psvec2_distance(struct vec2 *v0, struct vec2 *v1)
+double psvec2_distance(struct vec2 *v0, struct vec2 *v1)
 {
-	return vec2_distance((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec2_distance((double *)v0, (double *)v1);
 }
 
-mfloat_t psvec2_distance_squared(struct vec2 *v0, struct vec2 *v1)
+double psvec2_distance_squared(struct vec2 *v0, struct vec2 *v1)
 {
-	return vec2_distance_squared((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec2_distance_squared((double *)v0, (double *)v1);
 }
 
 bool psvec3_is_zero(struct vec3 *v0)
 {
-	return vec3_is_zero((mfloat_t *)v0);
+	return vec3_is_zero((double *)v0);
 }
 
 bool psvec3_is_equal(struct vec3 *v0, struct vec3 *v1)
 {
-	return vec3_is_equal((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec3_is_equal((double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3(struct vec3 *result, mfloat_t x, mfloat_t y, mfloat_t z)
+struct vec3 *psvec3(struct vec3 *result, double x, double y, double z)
 {
-	return (struct vec3 *)vec3((mfloat_t *)result, x, y, z);
+	return (struct vec3 *)vec3((double *)result, x, y, z);
 }
 
 struct vec3 *psvec3_assign(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_assign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_assign((double *)result, (double *)v0);
 }
 
 #if defined(MATHC_USE_INT)
 struct vec3 *psvec3_assign_vec3i(struct vec3 *result, struct vec3i *v0)
 {
-	return (struct vec3 *)vec3_assign_vec3i((mfloat_t *)result, (mint_t *)v0);
+	return (struct vec3 *)vec3_assign_vec3i((double *)result, (mint_t *)v0);
 }
 #endif
 
 struct vec3 *psvec3_zero(struct vec3 *result)
 {
-	return (struct vec3 *)vec3_zero((mfloat_t *)result);
+	return (struct vec3 *)vec3_zero((double *)result);
 }
 
 struct vec3 *psvec3_one(struct vec3 *result)
 {
-	return (struct vec3 *)vec3_one((mfloat_t *)result);
+	return (struct vec3 *)vec3_one((double *)result);
 }
 
 struct vec3 *psvec3_sign(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_sign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_sign((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_add(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_add((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_add((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3_add_f(struct vec3 *result, struct vec3 *v0, mfloat_t f)
+struct vec3 *psvec3_add_f(struct vec3 *result, struct vec3 *v0, double f)
 {
-	return (struct vec3 *)vec3_add_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec3 *)vec3_add_f((double *)result, (double *)v0, f);
 }
 
 struct vec3 *psvec3_subtract(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_subtract((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_subtract((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3_subtract_f(struct vec3 *result, struct vec3 *v0, mfloat_t f)
+struct vec3 *psvec3_subtract_f(struct vec3 *result, struct vec3 *v0, double f)
 {
-	return (struct vec3 *)vec3_subtract_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec3 *)vec3_subtract_f((double *)result, (double *)v0, f);
 }
 
 struct vec3 *psvec3_multiply(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_multiply((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_multiply((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3_multiply_f(struct vec3 *result, struct vec3 *v0, mfloat_t f)
+struct vec3 *psvec3_multiply_f(struct vec3 *result, struct vec3 *v0, double f)
 {
-	return (struct vec3 *)vec3_multiply_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec3 *)vec3_multiply_f((double *)result, (double *)v0, f);
 }
 
 struct vec3 *psvec3_multiply_mat3(struct vec3 *result, struct vec3 *v0, struct mat3 *m0)
 {
-	return (struct vec3 *)vec3_multiply_mat3((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)m0);
+	return (struct vec3 *)vec3_multiply_mat3((double *)result, (double *)v0, (double *)m0);
 }
 
 struct vec3 *psvec3_divide(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_divide((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_divide((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3_divide_f(struct vec3 *result, struct vec3 *v0, mfloat_t f)
+struct vec3 *psvec3_divide_f(struct vec3 *result, struct vec3 *v0, double f)
 {
-	return (struct vec3 *)vec3_divide_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec3 *)vec3_divide_f((double *)result, (double *)v0, f);
 }
 
 struct vec3 *psvec3_snap(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_snap((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_snap((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec3 *psvec3_snap_f(struct vec3 *result, struct vec3 *v0, mfloat_t f)
+struct vec3 *psvec3_snap_f(struct vec3 *result, struct vec3 *v0, double f)
 {
-	return (struct vec3 *)vec3_snap_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec3 *)vec3_snap_f((double *)result, (double *)v0, f);
 }
 
 struct vec3 *psvec3_negative(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_negative((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_negative((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_abs(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_abs((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_abs((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_floor(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_floor((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_floor((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_ceil(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_ceil((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_ceil((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_round(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_round((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_round((double *)result, (double *)v0);
 }
 
 struct vec3 *psvec3_max(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_max((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_max((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec3 *psvec3_min(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_min((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_min((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec3 *psvec3_clamp(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, struct vec3 *v2)
 {
-	return (struct vec3 *)vec3_clamp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2);
+	return (struct vec3 *)vec3_clamp((double *)result, (double *)v0, (double *)v1, (double *)v2);
 }
 
 struct vec3 *psvec3_cross(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_cross((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_cross((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec3 *psvec3_normalize(struct vec3 *result, struct vec3 *v0)
 {
-	return (struct vec3 *)vec3_normalize((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec3 *)vec3_normalize((double *)result, (double *)v0);
 }
 
-mfloat_t psvec3_dot(struct vec3 *v0, struct vec3 *v1)
+double psvec3_dot(struct vec3 *v0, struct vec3 *v1)
 {
-	return vec3_dot((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec3_dot((double *)v0, (double *)v1);
 }
 
 struct vec3 *psvec3_project(struct vec3 *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct vec3 *)vec3_project((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec3 *)vec3_project((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec3 *psvec3_slide(struct vec3 *result, struct vec3 *v0, struct vec3 *normal)
 {
-	return (struct vec3 *)vec3_slide((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)normal);
+	return (struct vec3 *)vec3_slide((double *)result, (double *)v0, (double *)normal);
 }
 
 struct vec3 *psvec3_reflect(struct vec3 *result, struct vec3 *v0, struct vec3 *normal)
 {
-	return (struct vec3 *)vec3_reflect((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)normal);
+	return (struct vec3 *)vec3_reflect((double *)result, (double *)v0, (double *)normal);
 }
 
-struct vec3 *psvec3_rotate(struct vec3 *result, struct vec3 *v0, struct vec3 *ra, mfloat_t f)
+struct vec3 *psvec3_rotate(struct vec3 *result, struct vec3 *v0, struct vec3 *ra, double f)
 {
-	return (struct vec3 *)vec3_lerp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)ra, f);
+	return (struct vec3 *)vec3_lerp((double *)result, (double *)v0, (double *)ra, f);
 }
 
-struct vec3 *psvec3_lerp(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, mfloat_t f)
+struct vec3 *psvec3_lerp(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, double f)
 {
-	return (struct vec3 *)vec3_lerp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, f);
+	return (struct vec3 *)vec3_lerp((double *)result, (double *)v0, (double *)v1, f);
 }
 
-struct vec3 *psvec3_bezier3(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, struct vec3 *v2, mfloat_t f)
+struct vec3 *psvec3_bezier3(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, struct vec3 *v2, double f)
 {
-	return (struct vec3 *)vec3_bezier3((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2, f);
+	return (struct vec3 *)vec3_bezier3((double *)result, (double *)v0, (double *)v1, (double *)v2, f);
 }
 
-struct vec3 *psvec3_bezier4(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, struct vec3 *v2, struct vec3 *v3, mfloat_t f)
+struct vec3 *psvec3_bezier4(struct vec3 *result, struct vec3 *v0, struct vec3 *v1, struct vec3 *v2, struct vec3 *v3, double f)
 {
-	return (struct vec3 *)vec3_bezier4((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2, (mfloat_t *)v3, f);
+	return (struct vec3 *)vec3_bezier4((double *)result, (double *)v0, (double *)v1, (double *)v2, (double *)v3, f);
 }
 
-mfloat_t psvec3_length(struct vec3 *v0)
+double psvec3_length(struct vec3 *v0)
 {
-	return vec3_length((mfloat_t *)v0);
+	return vec3_length((double *)v0);
 }
 
-mfloat_t psvec3_length_squared(struct vec3 *v0)
+double psvec3_length_squared(struct vec3 *v0)
 {
-	return vec3_length_squared((mfloat_t *)v0);
+	return vec3_length_squared((double *)v0);
 }
 
-mfloat_t psvec3_distance(struct vec3 *v0, struct vec3 *v1)
+double psvec3_distance(struct vec3 *v0, struct vec3 *v1)
 {
-	return vec3_distance((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec3_distance((double *)v0, (double *)v1);
 }
 
-mfloat_t psvec3_distance_squared(struct vec3 *v0, struct vec3 *v1)
+double psvec3_distance_squared(struct vec3 *v0, struct vec3 *v1)
 {
-	return vec3_distance_squared((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec3_distance_squared((double *)v0, (double *)v1);
 }
 
 bool psvec4_is_zero(struct vec4 *v0)
 {
-	return vec4_is_zero((mfloat_t *)v0);
+	return vec4_is_zero((double *)v0);
 }
 
 bool psvec4_is_equal(struct vec4 *v0, struct vec4 *v1)
 {
-	return vec4_is_equal((mfloat_t *)v0, (mfloat_t *)v1);
+	return vec4_is_equal((double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4(struct vec4 *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+struct vec4 *psvec4(struct vec4 *result, double x, double y, double z, double w)
 {
-	return (struct vec4 *)vec4((mfloat_t *)result, x, y, z, w);
+	return (struct vec4 *)vec4((double *)result, x, y, z, w);
 }
 
 struct vec4 *psvec4_assign(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_assign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_assign((double *)result, (double *)v0);
 }
 
 #if defined(MATHC_USE_INT)
 struct vec4 *psvec4_assign_vec4i(struct vec4 *result, struct vec4i *v0)
 {
-	return (struct vec4 *)vec4_assign_vec4i((mfloat_t *)result, (mint_t *)v0);
+	return (struct vec4 *)vec4_assign_vec4i((double *)result, (mint_t *)v0);
 }
 #endif
 
 struct vec4 *psvec4_zero(struct vec4 *result)
 {
-	return (struct vec4 *)vec4_zero((mfloat_t *)result);
+	return (struct vec4 *)vec4_zero((double *)result);
 }
 
 struct vec4 *psvec4_one(struct vec4 *result)
 {
-	return (struct vec4 *)vec4_one((mfloat_t *)result);
+	return (struct vec4 *)vec4_one((double *)result);
 }
 
 struct vec4 *psvec4_sign(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_sign((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_sign((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_add(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_add((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_add((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4_add_f(struct vec4 *result, struct vec4 *v0, mfloat_t f)
+struct vec4 *psvec4_add_f(struct vec4 *result, struct vec4 *v0, double f)
 {
-	return (struct vec4 *)vec4_add_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec4 *)vec4_add_f((double *)result, (double *)v0, f);
 }
 
 struct vec4 *psvec4_subtract(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_subtract((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_subtract((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4_subtract_f(struct vec4 *result, struct vec4 *v0, mfloat_t f)
+struct vec4 *psvec4_subtract_f(struct vec4 *result, struct vec4 *v0, double f)
 {
-	return (struct vec4 *)vec4_subtract_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec4 *)vec4_subtract_f((double *)result, (double *)v0, f);
 }
 
 struct vec4 *psvec4_multiply(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_multiply((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_multiply((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4_multiply_f(struct vec4 *result, struct vec4 *v0, mfloat_t f)
+struct vec4 *psvec4_multiply_f(struct vec4 *result, struct vec4 *v0, double f)
 {
-	return (struct vec4 *)vec4_multiply_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec4 *)vec4_multiply_f((double *)result, (double *)v0, f);
 }
 
 struct vec4 *psvec4_multiply_mat4(struct vec4 *result, struct vec4 *v0, struct mat4 *m0)
 {
-	return (struct vec4 *)vec4_multiply_mat4((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)m0);
+	return (struct vec4 *)vec4_multiply_mat4((double *)result, (double *)v0, (double *)m0);
 }
 
 struct vec4 *psvec4_divide(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_divide((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_divide((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4_divide_f(struct vec4 *result, struct vec4 *v0, mfloat_t f)
+struct vec4 *psvec4_divide_f(struct vec4 *result, struct vec4 *v0, double f)
 {
-	return (struct vec4 *)vec4_divide_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec4 *)vec4_divide_f((double *)result, (double *)v0, f);
 }
 
 struct vec4 *psvec4_snap(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_snap((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_snap((double *)result, (double *)v0, (double *)v1);
 }
 
-struct vec4 *psvec4_snap_f(struct vec4 *result, struct vec4 *v0, mfloat_t f)
+struct vec4 *psvec4_snap_f(struct vec4 *result, struct vec4 *v0, double f)
 {
-	return (struct vec4 *)vec4_snap_f((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct vec4 *)vec4_snap_f((double *)result, (double *)v0, f);
 }
 
 struct vec4 *psvec4_negative(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_negative((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_negative((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_abs(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_abs((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_abs((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_floor(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_floor((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_floor((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_ceil(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_ceil((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_ceil((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_round(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_round((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_round((double *)result, (double *)v0);
 }
 
 struct vec4 *psvec4_max(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_max((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_max((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec4 *psvec4_min(struct vec4 *result, struct vec4 *v0, struct vec4 *v1)
 {
-	return (struct vec4 *)vec4_min((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct vec4 *)vec4_min((double *)result, (double *)v0, (double *)v1);
 }
 
 struct vec4 *psvec4_clamp(struct vec4 *result, struct vec4 *v0, struct vec4 *v1, struct vec4 *v2)
 {
-	return (struct vec4 *)vec4_clamp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, (mfloat_t *)v2);
+	return (struct vec4 *)vec4_clamp((double *)result, (double *)v0, (double *)v1, (double *)v2);
 }
 
 struct vec4 *psvec4_normalize(struct vec4 *result, struct vec4 *v0)
 {
-	return (struct vec4 *)vec4_normalize((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct vec4 *)vec4_normalize((double *)result, (double *)v0);
 }
 
-struct vec4 *psvec4_lerp(struct vec4 *result, struct vec4 *v0, struct vec4 *v1, mfloat_t f)
+struct vec4 *psvec4_lerp(struct vec4 *result, struct vec4 *v0, struct vec4 *v1, double f)
 {
-	return (struct vec4 *)vec4_lerp((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1, f);
+	return (struct vec4 *)vec4_lerp((double *)result, (double *)v0, (double *)v1, f);
 }
 
 bool psquat_is_zero(struct quat *q0)
 {
-	return quat_is_zero((mfloat_t *)q0);
+	return quat_is_zero((double *)q0);
 }
 
 bool psquat_is_equal(struct quat *q0, struct quat *q1)
 {
-	return quat_is_equal((mfloat_t *)q0, (mfloat_t *)q1);
+	return quat_is_equal((double *)q0, (double *)q1);
 }
 
-struct quat *psquat(struct quat *result, mfloat_t x, mfloat_t y, mfloat_t z, mfloat_t w)
+struct quat *psquat(struct quat *result, double x, double y, double z, double w)
 {
-	return (struct quat *)quat((mfloat_t *)result, x, y, z, w);
+	return (struct quat *)quat((double *)result, x, y, z, w);
 }
 
 struct quat *psquat_assign(struct quat *result, struct quat *q0)
 {
-	return (struct quat *)quat_assign((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct quat *)quat_assign((double *)result, (double *)q0);
 }
 
 struct quat *psquat_zero(struct quat *result)
 {
-	return (struct quat *)quat_zero((mfloat_t *)result);
+	return (struct quat *)quat_zero((double *)result);
 }
 
 struct quat *psquat_null(struct quat *result)
 {
-	return (struct quat *)quat_null((mfloat_t *)result);
+	return (struct quat *)quat_null((double *)result);
 }
 
 struct quat *psquat_multiply(struct quat *result, struct quat *q0, struct quat *q1)
 {
-	return (struct quat *)quat_multiply((mfloat_t *)result, (mfloat_t *)q0, (mfloat_t *)q1);
+	return (struct quat *)quat_multiply((double *)result, (double *)q0, (double *)q1);
 }
 
-struct quat *psquat_multiply_f(struct quat *result, struct quat *q0, mfloat_t f)
+struct quat *psquat_multiply_f(struct quat *result, struct quat *q0, double f)
 {
-	return (struct quat *)quat_multiply_f((mfloat_t *)result, (mfloat_t *)q0, f);
+	return (struct quat *)quat_multiply_f((double *)result, (double *)q0, f);
 }
 
 struct quat *psquat_divide(struct quat *result, struct quat *q0, struct quat *q1)
 {
-	return (struct quat *)quat_divide((mfloat_t *)result, (mfloat_t *)q0, (mfloat_t *)q1);
+	return (struct quat *)quat_divide((double *)result, (double *)q0, (double *)q1);
 }
 
-struct quat *psquat_divide_f(struct quat *result, struct quat *q0, mfloat_t f)
+struct quat *psquat_divide_f(struct quat *result, struct quat *q0, double f)
 {
-	return (struct quat *)quat_divide_f((mfloat_t *)result, (mfloat_t *)q0, f);
+	return (struct quat *)quat_divide_f((double *)result, (double *)q0, f);
 }
 
 struct quat *psquat_negative(struct quat *result, struct quat *q0)
 {
-	return (struct quat *)quat_negative((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct quat *)quat_negative((double *)result, (double *)q0);
 }
 
 struct quat *psquat_conjugate(struct quat *result, struct quat *q0)
 {
-	return (struct quat *)quat_conjugate((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct quat *)quat_conjugate((double *)result, (double *)q0);
 }
 
 struct quat *psquat_inverse(struct quat *result, struct quat *q0)
 {
-	return (struct quat *)quat_inverse((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct quat *)quat_inverse((double *)result, (double *)q0);
 }
 
 struct quat *psquat_normalize(struct quat *result, struct quat *q0)
 {
-	return (struct quat *)quat_normalize((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct quat *)quat_normalize((double *)result, (double *)q0);
 }
 
-mfloat_t psquat_dot(struct quat *q0, struct quat *q1)
+double psquat_dot(struct quat *q0, struct quat *q1)
 {
-	return quat_dot((mfloat_t *)q0, (mfloat_t *)q1);
+	return quat_dot((double *)q0, (double *)q1);
 }
 
-struct quat *psquat_power(struct quat *result, struct quat *q0, mfloat_t exponent)
+struct quat *psquat_power(struct quat *result, struct quat *q0, double exponent)
 {
-	return (struct quat *)quat_power((mfloat_t *)result, (mfloat_t *)q0, exponent);
+	return (struct quat *)quat_power((double *)result, (double *)q0, exponent);
 }
 
-struct quat *psquat_from_axis_angle(struct quat *result, struct vec3 *v0, mfloat_t angle)
+struct quat *psquat_from_axis_angle(struct quat *result, struct vec3 *v0, double angle)
 {
-	return (struct quat *)quat_from_axis_angle((mfloat_t *)result, (mfloat_t *)v0, angle);
+	return (struct quat *)quat_from_axis_angle((double *)result, (double *)v0, angle);
 }
 
 struct quat *psquat_from_vec3(struct quat *result, struct vec3 *v0, struct vec3 *v1)
 {
-	return (struct quat *)quat_from_vec3((mfloat_t *)result, (mfloat_t *)v0, (mfloat_t *)v1);
+	return (struct quat *)quat_from_vec3((double *)result, (double *)v0, (double *)v1);
 }
 
 struct quat *psquat_from_mat4(struct quat *result, struct mat4 *m0)
 {
-	return (struct quat *)quat_from_mat4((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct quat *)quat_from_mat4((double *)result, (double *)m0);
 }
 
-struct quat *psquat_lerp(struct quat *result, struct quat *q0, struct quat *q1, mfloat_t f)
+struct quat *psquat_lerp(struct quat *result, struct quat *q0, struct quat *q1, double f)
 {
-	return (struct quat *)quat_lerp((mfloat_t *)result, (mfloat_t *)q0, (mfloat_t *)q1, f);
+	return (struct quat *)quat_lerp((double *)result, (double *)q0, (double *)q1, f);
 }
 
-struct quat *psquat_slerp(struct quat *result, struct quat *q0, struct quat *q1, mfloat_t f)
+struct quat *psquat_slerp(struct quat *result, struct quat *q0, struct quat *q1, double f)
 {
-	return (struct quat *)quat_slerp((mfloat_t *)result, (mfloat_t *)q0, (mfloat_t *)q1, f);
+	return (struct quat *)quat_slerp((double *)result, (double *)q0, (double *)q1, f);
 }
 
-mfloat_t psquat_length(struct quat *q0)
+double psquat_length(struct quat *q0)
 {
-	return quat_length((mfloat_t *)q0);
+	return quat_length((double *)q0);
 }
 
-mfloat_t psquat_length_squared(struct quat *q0)
+double psquat_length_squared(struct quat *q0)
 {
-	return quat_length_squared((mfloat_t *)q0);
+	return quat_length_squared((double *)q0);
 }
 
-mfloat_t psquat_angle(struct quat *q0, struct quat *q1)
+double psquat_angle(struct quat *q0, struct quat *q1)
 {
-	return quat_angle((mfloat_t *)q0, (mfloat_t *)q1);
+	return quat_angle((double *)q0, (double *)q1);
 }
 
-struct mat2 *psmat2(struct mat2 *result, mfloat_t m11, mfloat_t m12, mfloat_t m21, mfloat_t m22)
+struct mat2 *psmat2(struct mat2 *result, double m11, double m12, double m21, double m22)
 {
-	return (struct mat2 *)mat2((mfloat_t *)result, m11, m12, m21, m22);
+	return (struct mat2 *)mat2((double *)result, m11, m12, m21, m22);
 }
 
 struct mat2 *psmat2_zero(struct mat2 *result)
 {
-	return (struct mat2 *)mat2_zero((mfloat_t *)result);
+	return (struct mat2 *)mat2_zero((double *)result);
 }
 
 struct mat2 *psmat2_identity(struct mat2 *result)
 {
-	return (struct mat2 *)mat2_identity((mfloat_t *)result);
+	return (struct mat2 *)mat2_identity((double *)result);
 }
 
-mfloat_t psmat2_determinant(struct mat2 *m0)
+double psmat2_determinant(struct mat2 *m0)
 {
-	return mat2_determinant((mfloat_t *)m0);
+	return mat2_determinant((double *)m0);
 }
 
 struct mat2 *psmat2_assign(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_assign((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_assign((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_negative(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_negative((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_negative((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_transpose(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_transpose((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_transpose((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_cofactor(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_cofactor((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_cofactor((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_adjugate(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_adjugate((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_adjugate((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_multiply(struct mat2 *result, struct mat2 *m0, struct mat2 *m1)
 {
-	return (struct mat2 *)mat2_multiply((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1);
+	return (struct mat2 *)mat2_multiply((double *)result, (double *)m0, (double *)m1);
 }
 
-struct mat2 *psmat2_multiply_f(struct mat2 *result, struct mat2 *m0, mfloat_t f)
+struct mat2 *psmat2_multiply_f(struct mat2 *result, struct mat2 *m0, double f)
 {
-	return (struct mat2 *)mat2_multiply_f((mfloat_t *)result, (mfloat_t *)m0, f);
+	return (struct mat2 *)mat2_multiply_f((double *)result, (double *)m0, f);
 }
 
 struct mat2 *psmat2_inverse(struct mat2 *result, struct mat2 *m0)
 {
-	return (struct mat2 *)mat2_inverse((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat2 *)mat2_inverse((double *)result, (double *)m0);
 }
 
 struct mat2 *psmat2_scaling(struct mat2 *result, struct vec2 *v0)
 {
-	return (struct mat2 *)mat2_scaling((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct mat2 *)mat2_scaling((double *)result, (double *)v0);
 }
 
 struct mat2 *psmat2_scale(struct mat2 *result, struct mat2 *m0, struct vec2 *v0)
 {
-	return (struct mat2 *)mat2_scale((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat2 *)mat2_scale((double *)result, (double *)m0, (double *)v0);
 }
 
-struct mat2 *psmat2_rotation_z(struct mat2 *result, mfloat_t f)
+struct mat2 *psmat2_rotation_z(struct mat2 *result, double f)
 {
-	return (struct mat2 *)mat2_rotation_z((mfloat_t *)result, f);
+	return (struct mat2 *)mat2_rotation_z((double *)result, f);
 }
 
-struct mat2 *psmat2_lerp(struct mat2 *result, struct mat2 *m0, struct mat2 *m1, mfloat_t f)
+struct mat2 *psmat2_lerp(struct mat2 *result, struct mat2 *m0, struct mat2 *m1, double f)
 {
-	return (struct mat2 *)mat2_lerp((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1, f);
+	return (struct mat2 *)mat2_lerp((double *)result, (double *)m0, (double *)m1, f);
 }
 
-struct mat3 *psmat3(struct mat3 *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m31, mfloat_t m32, mfloat_t m33)
+struct mat3 *psmat3(struct mat3 *result, double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
 {
-	return (struct mat3 *)mat3((mfloat_t *)result, m11, m12, m13, m21, m22, m23, m31, m32, m33);
+	return (struct mat3 *)mat3((double *)result, m11, m12, m13, m21, m22, m23, m31, m32, m33);
 }
 
 struct mat3 *psmat3_zero(struct mat3 *result)
 {
-	return (struct mat3 *)mat3_zero((mfloat_t *)result);
+	return (struct mat3 *)mat3_zero((double *)result);
 }
 
 struct mat3 *psmat3_identity(struct mat3 *result)
 {
-	return (struct mat3 *)mat3_identity((mfloat_t *)result);
+	return (struct mat3 *)mat3_identity((double *)result);
 }
 
-mfloat_t psmat3_determinant(struct mat3 *m0)
+double psmat3_determinant(struct mat3 *m0)
 {
-	return mat3_determinant((mfloat_t *)m0);
+	return mat3_determinant((double *)m0);
 }
 
 struct mat3 *psmat3_assign(struct mat3 *result, struct mat3 *m0)
 {
-	return (struct mat3 *)mat3_assign((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat3 *)mat3_assign((double *)result, (double *)m0);
 }
 
 struct mat3 *psmat3_negative(struct mat3 *result, struct mat3 *m0)
 {
-	return (struct mat3 *)mat3_negative((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat3 *)mat3_negative((double *)result, (double *)m0);
 }
 
 struct mat3 *psmat3_transpose(struct mat3 *result, struct mat3 *m0)
 {
-	return (struct mat3 *)mat3_transpose((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat3 *)mat3_transpose((double *)result, (double *)m0);
 }
 
 struct mat3 *psmat3_cofactor(struct mat3 *result, struct mat3 *m0)
 {
-	return (struct mat3 *)mat3_cofactor((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat3 *)mat3_cofactor((double *)result, (double *)m0);
 }
 
 struct mat3 *psmat3_multiply(struct mat3 *result, struct mat3 *m0, struct mat3 *m1)
 {
-	return (struct mat3 *)mat3_multiply((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1);
+	return (struct mat3 *)mat3_multiply((double *)result, (double *)m0, (double *)m1);
 }
 
-struct mat3 *psmat3_multiply_f(struct mat3 *result, struct mat3 *m0, mfloat_t f)
+struct mat3 *psmat3_multiply_f(struct mat3 *result, struct mat3 *m0, double f)
 {
-	return (struct mat3 *)mat3_multiply_f((mfloat_t *)result, (mfloat_t *)m0, f);
+	return (struct mat3 *)mat3_multiply_f((double *)result, (double *)m0, f);
 }
 
 struct mat3 *psmat3_inverse(struct mat3 *result, struct mat3 *m0)
 {
-	return (struct mat3 *)mat3_inverse((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat3 *)mat3_inverse((double *)result, (double *)m0);
 }
 
 struct mat3 *psmat3_scaling(struct mat3 *result, struct vec3 *v0)
 {
-	return (struct mat3 *)mat3_scaling((mfloat_t *)result, (mfloat_t *)v0);
+	return (struct mat3 *)mat3_scaling((double *)result, (double *)v0);
 }
 
 struct mat3 *psmat3_scale(struct mat3 *result, struct mat3 *m0, struct vec3 *v0)
 {
-	return (struct mat3 *)mat3_scale((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat3 *)mat3_scale((double *)result, (double *)m0, (double *)v0);
 }
 
-struct mat3 *psmat3_rotation_x(struct mat3 *result, mfloat_t f)
+struct mat3 *psmat3_rotation_x(struct mat3 *result, double f)
 {
-	return (struct mat3 *)mat3_rotation_x((mfloat_t *)result, f);
+	return (struct mat3 *)mat3_rotation_x((double *)result, f);
 }
 
-struct mat3 *psmat3_rotation_y(struct mat3 *result, mfloat_t f)
+struct mat3 *psmat3_rotation_y(struct mat3 *result, double f)
 {
-	return (struct mat3 *)mat3_rotation_y((mfloat_t *)result, f);
+	return (struct mat3 *)mat3_rotation_y((double *)result, f);
 }
 
-struct mat3 *psmat3_rotation_z(struct mat3 *result, mfloat_t f)
+struct mat3 *psmat3_rotation_z(struct mat3 *result, double f)
 {
-	return (struct mat3 *)mat3_rotation_z((mfloat_t *)result, f);
+	return (struct mat3 *)mat3_rotation_z((double *)result, f);
 }
 
-struct mat3 *psmat3_rotation_axis(struct mat3 *result, struct vec3 *v0, mfloat_t f)
+struct mat3 *psmat3_rotation_axis(struct mat3 *result, struct vec3 *v0, double f)
 {
-	return (struct mat3 *)mat3_rotation_axis((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct mat3 *)mat3_rotation_axis((double *)result, (double *)v0, f);
 }
 
 struct mat3 *psmat3_rotation_quat(struct mat3 *result, struct quat *q0)
 {
-	return (struct mat3 *)mat3_rotation_quat((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct mat3 *)mat3_rotation_quat((double *)result, (double *)q0);
 }
 
-struct mat3 *psmat3_lerp(struct mat3 *result, struct mat3 *m0, struct mat3 *m1, mfloat_t f)
+struct mat3 *psmat3_lerp(struct mat3 *result, struct mat3 *m0, struct mat3 *m1, double f)
 {
-	return (struct mat3 *)mat3_lerp((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1, f);
+	return (struct mat3 *)mat3_lerp((double *)result, (double *)m0, (double *)m1, f);
 }
 
-struct mat4 *psmat4(struct mat4 *result, mfloat_t m11, mfloat_t m12, mfloat_t m13, mfloat_t m14, mfloat_t m21, mfloat_t m22, mfloat_t m23, mfloat_t m24, mfloat_t m31, mfloat_t m32, mfloat_t m33, mfloat_t m34, mfloat_t m41, mfloat_t m42, mfloat_t m43, mfloat_t m44)
+struct mat4 *psmat4(struct mat4 *result, double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double m41, double m42, double m43, double m44)
 {
-	return (struct mat4 *)mat4((mfloat_t *)result, m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44);
+	return (struct mat4 *)mat4((double *)result, m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44);
 }
 
 struct mat4 *psmat4_zero(struct mat4 *result)
 {
-	return (struct mat4 *)mat4_zero((mfloat_t *)result);
+	return (struct mat4 *)mat4_zero((double *)result);
 }
 
 struct mat4 *psmat4_identity(struct mat4 *result)
 {
-	return (struct mat4 *)mat4_identity((mfloat_t *)result);
+	return (struct mat4 *)mat4_identity((double *)result);
 }
 
-mfloat_t psmat4_determinant(struct mat4 *m0)
+double psmat4_determinant(struct mat4 *m0)
 {
-	return mat4_determinant((mfloat_t *)m0);
+	return mat4_determinant((double *)m0);
 }
 
 struct mat4 *psmat4_assign(struct mat4 *result, struct mat4 *m0)
 {
-	return (struct mat4 *)mat4_assign((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat4 *)mat4_assign((double *)result, (double *)m0);
 }
 
 struct mat4 *psmat4_negative(struct mat4 *result, struct mat4 *m0)
 {
-	return (struct mat4 *)mat4_negative((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat4 *)mat4_negative((double *)result, (double *)m0);
 }
 
 struct mat4 *psmat4_transpose(struct mat4 *result, struct mat4 *m0)
 {
-	return (struct mat4 *)mat4_transpose((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat4 *)mat4_transpose((double *)result, (double *)m0);
 }
 
 struct mat4 *psmat4_cofactor(struct mat4 *result, struct mat4 *m0)
 {
-	return (struct mat4 *)mat4_cofactor((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat4 *)mat4_cofactor((double *)result, (double *)m0);
 }
 
-struct mat4 *psmat4_rotation_x(struct mat4 *result, mfloat_t f)
+struct mat4 *psmat4_rotation_x(struct mat4 *result, double f)
 {
-	return (struct mat4 *)mat4_rotation_x((mfloat_t *)result, f);
+	return (struct mat4 *)mat4_rotation_x((double *)result, f);
 }
 
-struct mat4 *psmat4_rotation_y(struct mat4 *result, mfloat_t f)
+struct mat4 *psmat4_rotation_y(struct mat4 *result, double f)
 {
-	return (struct mat4 *)mat4_rotation_y((mfloat_t *)result, f);
+	return (struct mat4 *)mat4_rotation_y((double *)result, f);
 }
 
-struct mat4 *psmat4_rotation_z(struct mat4 *result, mfloat_t f)
+struct mat4 *psmat4_rotation_z(struct mat4 *result, double f)
 {
-	return (struct mat4 *)mat4_rotation_z((mfloat_t *)result, f);
+	return (struct mat4 *)mat4_rotation_z((double *)result, f);
 }
 
-struct mat4 *psmat4_rotation_axis(struct mat4 *result, struct vec3 *v0, mfloat_t f)
+struct mat4 *psmat4_rotation_axis(struct mat4 *result, struct vec3 *v0, double f)
 {
-	return (struct mat4 *)mat4_rotation_axis((mfloat_t *)result, (mfloat_t *)v0, f);
+	return (struct mat4 *)mat4_rotation_axis((double *)result, (double *)v0, f);
 }
 
 struct mat4 *psmat4_rotation_quat(struct mat4 *result, struct quat *q0)
 {
-	return (struct mat4 *)mat4_rotation_quat((mfloat_t *)result, (mfloat_t *)q0);
+	return (struct mat4 *)mat4_rotation_quat((double *)result, (double *)q0);
 }
 
 struct mat4 *psmat4_translation(struct mat4 *result, struct mat4 *m0, struct vec3 *v0)
 {
-	return (struct mat4 *)mat4_translation((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat4 *)mat4_translation((double *)result, (double *)m0, (double *)v0);
 }
 
 struct mat4 *psmat4_translate(struct mat4 *result, struct mat4 *m0, struct vec3 *v0)
 {
-	return (struct mat4 *)mat4_translate((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat4 *)mat4_translate((double *)result, (double *)m0, (double *)v0);
 }
 
 struct mat4 *psmat4_scaling(struct mat4 *result, struct mat4 *m0, struct vec3 *v0)
 {
-	return (struct mat4 *)mat4_scaling((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat4 *)mat4_scaling((double *)result, (double *)m0, (double *)v0);
 }
 
 struct mat4 *psmat4_scale(struct mat4 *result, struct mat4 *m0, struct vec3 *v0)
 {
-	return (struct mat4 *)mat4_scale((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)v0);
+	return (struct mat4 *)mat4_scale((double *)result, (double *)m0, (double *)v0);
 }
 
 struct mat4 *psmat4_multiply(struct mat4 *result, struct mat4 *m0, struct mat4 *m1)
 {
-	return (struct mat4 *)mat4_multiply((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1);
+	return (struct mat4 *)mat4_multiply((double *)result, (double *)m0, (double *)m1);
 }
 
-struct mat4 *psmat4_multiply_f(struct mat4 *result, struct mat4 *m0, mfloat_t f)
+struct mat4 *psmat4_multiply_f(struct mat4 *result, struct mat4 *m0, double f)
 {
-	return (struct mat4 *)mat4_multiply_f((mfloat_t *)result, (mfloat_t *)m0, f);
+	return (struct mat4 *)mat4_multiply_f((double *)result, (double *)m0, f);
 }
 
 struct mat4 *psmat4_inverse(struct mat4 *result, struct mat4 *m0)
 {
-	return (struct mat4 *)mat4_inverse((mfloat_t *)result, (mfloat_t *)m0);
+	return (struct mat4 *)mat4_inverse((double *)result, (double *)m0);
 }
 
-struct mat4 *psmat4_lerp(struct mat4 *result, struct mat4 *m0, struct mat4 *m1, mfloat_t f)
+struct mat4 *psmat4_lerp(struct mat4 *result, struct mat4 *m0, struct mat4 *m1, double f)
 {
-	return (struct mat4 *)mat4_lerp((mfloat_t *)result, (mfloat_t *)m0, (mfloat_t *)m1, f);
+	return (struct mat4 *)mat4_lerp((double *)result, (double *)m0, (double *)m1, f);
 }
 
 struct mat4 *psmat4_look_at(struct mat4 *result, struct vec3 *position, struct vec3 *target, struct vec3 *up)
 {
-	return (struct mat4 *)mat4_look_at((mfloat_t *)result, (mfloat_t *)position, (mfloat_t *)target, (mfloat_t *)up);
+	return (struct mat4 *)mat4_look_at((double *)result, (double *)position, (double *)target, (double *)up);
 }
 
-struct mat4 *psmat4_ortho(struct mat4 *result, mfloat_t l, mfloat_t r, mfloat_t b, mfloat_t t, mfloat_t n, mfloat_t f)
+struct mat4 *psmat4_ortho(struct mat4 *result, double l, double r, double b, double t, double n, double f)
 {
-	return (struct mat4 *)mat4_ortho((mfloat_t *)result, l, r, b, t, n, f);
+	return (struct mat4 *)mat4_ortho((double *)result, l, r, b, t, n, f);
 }
 
-struct mat4 *psmat4_perspective(struct mat4 *result, mfloat_t fov_y, mfloat_t aspect, mfloat_t n, mfloat_t f)
+struct mat4 *psmat4_perspective(struct mat4 *result, double fov_y, double aspect, double n, double f)
 {
-	return (struct mat4 *)mat4_perspective((mfloat_t *)result, fov_y, aspect, n, f);
+	return (struct mat4 *)mat4_perspective((double *)result, fov_y, aspect, n, f);
 }
 
-struct mat4 *psmat4_perspective_fov(struct mat4 *result, mfloat_t fov, mfloat_t w, mfloat_t h, mfloat_t n, mfloat_t f)
+struct mat4 *psmat4_perspective_fov(struct mat4 *result, double fov, double w, double h, double n, double f)
 {
-	return (struct mat4 *)mat4_perspective_fov((mfloat_t *)result, fov, w, h, n, f);
+	return (struct mat4 *)mat4_perspective_fov((double *)result, fov, w, h, n, f);
 }
 
-struct mat4 *psmat4_perspective_infinite(struct mat4 *result, mfloat_t fov_y, mfloat_t aspect, mfloat_t n)
+struct mat4 *psmat4_perspective_infinite(struct mat4 *result, double fov_y, double aspect, double n)
 {
-	return (struct mat4 *)mat4_perspective_infinite((mfloat_t *)result, fov_y, aspect, n);
+	return (struct mat4 *)mat4_perspective_infinite((double *)result, fov_y, aspect, n);
 }
 #endif
 #endif
 
 #if defined(MATHC_USE_FLOATING_POINT) && defined(MATHC_USE_EASING_FUNCTIONS)
-mfloat_t quadratic_ease_out(mfloat_t f)
+double quadratic_ease_out(double f)
 {
 	return -f * (f - MFLOAT_C(2.0));
 }
 
-mfloat_t quadratic_ease_in(mfloat_t f)
+double quadratic_ease_in(double f)
 {
 	return f * f;
 }
 
-mfloat_t quadratic_ease_in_out(mfloat_t f)
+double quadratic_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(2.0) * f * f;
 	} else {
@@ -6672,20 +6672,20 @@ mfloat_t quadratic_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t cubic_ease_out(mfloat_t f)
+double cubic_ease_out(double f)
 {
-	mfloat_t a = f - MFLOAT_C(1.0);
+	double a = f - MFLOAT_C(1.0);
 	return a * a * a + MFLOAT_C(1.0);
 }
 
-mfloat_t cubic_ease_in(mfloat_t f)
+double cubic_ease_in(double f)
 {
 	return f * f * f;
 }
 
-mfloat_t cubic_ease_in_out(mfloat_t f)
+double cubic_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(4.0) * f * f * f;
 	} else {
@@ -6695,20 +6695,20 @@ mfloat_t cubic_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t quartic_ease_out(mfloat_t f)
+double quartic_ease_out(double f)
 {
-	mfloat_t a = f - MFLOAT_C(1.0);
+	double a = f - MFLOAT_C(1.0);
 	return a * a * a * (MFLOAT_C(1.0) - f) + MFLOAT_C(1.0);
 }
 
-mfloat_t quartic_ease_in(mfloat_t f)
+double quartic_ease_in(double f)
 {
 	return f * f * f * f;
 }
 
-mfloat_t quartic_ease_in_out(mfloat_t f)
+double quartic_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(8.0) * f * f * f * f;
 	} else {
@@ -6718,20 +6718,20 @@ mfloat_t quartic_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t quintic_ease_out(mfloat_t f)
+double quintic_ease_out(double f)
 {
-	mfloat_t a = f - MFLOAT_C(1.0);
+	double a = f - MFLOAT_C(1.0);
 	return a * a * a * a * a + MFLOAT_C(1.0);
 }
 
-mfloat_t quintic_ease_in(mfloat_t f)
+double quintic_ease_in(double f)
 {
 	return f * f * f * f * f;
 }
 
-mfloat_t quintic_ease_in_out(mfloat_t f)
+double quintic_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(16.0) * f * f * f * f * f;
 	} else {
@@ -6741,34 +6741,34 @@ mfloat_t quintic_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t sine_ease_out(mfloat_t f)
+double sine_ease_out(double f)
 {
 	return MSIN(f * MPI_2);
 }
 
-mfloat_t sine_ease_in(mfloat_t f)
+double sine_ease_in(double f)
 {
 	return MSIN((f - MFLOAT_C(1.0)) * MPI_2) + MFLOAT_C(1.0);
 }
 
-mfloat_t sine_ease_in_out(mfloat_t f)
+double sine_ease_in_out(double f)
 {
 	return MFLOAT_C(0.5) * (MFLOAT_C(1.0) - MCOS(f * MPI));
 }
 
-mfloat_t circular_ease_out(mfloat_t f)
+double circular_ease_out(double f)
 {
 	return MSQRT((MFLOAT_C(2.0) - f) * f);
 }
 
-mfloat_t circular_ease_in(mfloat_t f)
+double circular_ease_in(double f)
 {
 	return MFLOAT_C(1.0) - MSQRT(MFLOAT_C(1.0) - (f * f));
 }
 
-mfloat_t circular_ease_in_out(mfloat_t f)
+double circular_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(0.5) * (MFLOAT_C(1.0) - MSQRT(MFLOAT_C(1.0) - MFLOAT_C(4.0) * f * f));
 	} else {
@@ -6777,27 +6777,27 @@ mfloat_t circular_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t exponential_ease_out(mfloat_t f)
+double exponential_ease_out(double f)
 {
-	mfloat_t a = f;
+	double a = f;
 	if (MFABS(a) > MFLT_EPSILON) {
 		a = MFLOAT_C(1.0) - MPOW(MFLOAT_C(2.0), -MFLOAT_C(10.0) * f);
 	}
 	return a;
 }
 
-mfloat_t exponential_ease_in(mfloat_t f)
+double exponential_ease_in(double f)
 {
-	mfloat_t a = f;
+	double a = f;
 	if (MFABS(a) > MFLT_EPSILON) {
 		a = MPOW(MFLOAT_C(2.0), MFLOAT_C(10.0) * (f - MFLOAT_C(1.0)));
 	}
 	return a;
 }
 
-mfloat_t exponential_ease_in_out(mfloat_t f)
+double exponential_ease_in_out(double f)
 {
-	mfloat_t a = f;
+	double a = f;
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(0.5) * MPOW(MFLOAT_C(2.0), (MFLOAT_C(20.0) * f) - MFLOAT_C(10.0));
 	} else {
@@ -6806,19 +6806,19 @@ mfloat_t exponential_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t elastic_ease_out(mfloat_t f)
+double elastic_ease_out(double f)
 {
 	return MSIN(-MFLOAT_C(13.0) * MPI_2 * (f + MFLOAT_C(1.0))) * MPOW(MFLOAT_C(2.0), -MFLOAT_C(10.0) * f) + MFLOAT_C(1.0);
 }
 
-mfloat_t elastic_ease_in(mfloat_t f)
+double elastic_ease_in(double f)
 {
 	return MSIN(MFLOAT_C(13.0) * MPI_2 * f) * MPOW(MFLOAT_C(2.0), MFLOAT_C(10.0) * (f - MFLOAT_C(1.0)));
 }
 
-mfloat_t elastic_ease_in_out(mfloat_t f)
+double elastic_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(0.5) * MSIN(MFLOAT_C(13.0) * MPI_2 * (MFLOAT_C(2.0) * f)) * MPOW(MFLOAT_C(2.0), MFLOAT_C(10.0) * ((MFLOAT_C(2.0) * f) - MFLOAT_C(1.0)));
 	} else {
@@ -6827,20 +6827,20 @@ mfloat_t elastic_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t back_ease_out(mfloat_t f)
+double back_ease_out(double f)
 {
-	mfloat_t a = MFLOAT_C(1.0) - f;
+	double a = MFLOAT_C(1.0) - f;
 	return MFLOAT_C(1.0) - (a * a * a - a * MSIN(a * MPI));
 }
 
-mfloat_t back_ease_in(mfloat_t f)
+double back_ease_in(double f)
 {
 	return f * f * f - f * MSIN(f * MPI);
 }
 
-mfloat_t back_ease_in_out(mfloat_t f)
+double back_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(2.0) * f;
 		a = MFLOAT_C(0.5) * (a * a * a - a * MSIN(a * MPI));
@@ -6851,9 +6851,9 @@ mfloat_t back_ease_in_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t bounce_ease_out(mfloat_t f)
+double bounce_ease_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(4.0) / MFLOAT_C(11.0)) {
 		a = (MFLOAT_C(121.0) * f * f) / MFLOAT_C(16.0);
 	} else if (f < MFLOAT_C(8.0) / MFLOAT_C(11.0)) {
@@ -6866,14 +6866,14 @@ mfloat_t bounce_ease_out(mfloat_t f)
 	return a;
 }
 
-mfloat_t bounce_ease_in(mfloat_t f)
+double bounce_ease_in(double f)
 {
 	return MFLOAT_C(1.0) - bounce_ease_out(MFLOAT_C(1.0) - f);
 }
 
-mfloat_t bounce_ease_in_out(mfloat_t f)
+double bounce_ease_in_out(double f)
 {
-	mfloat_t a = MFLOAT_C(0.0);
+	double a = MFLOAT_C(0.0);
 	if (f < MFLOAT_C(0.5)) {
 		a = MFLOAT_C(0.5) * bounce_ease_in(f * MFLOAT_C(2.0));
 	} else {

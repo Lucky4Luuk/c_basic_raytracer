@@ -23,33 +23,35 @@ int main() {
 
 	camera.fov = 60.0;
 
-	mfloat_t aspect = ((mfloat_t)SCREEN_WIDTH) / ((mfloat_t)SCREEN_HEIGHT);
+	double aspect = ((double)SCREEN_WIDTH) / ((double)SCREEN_HEIGHT);
 
 	for (int ix = 0; ix < SCREEN_WIDTH; ++ix) {
 		for (int iy = 0; iy < SCREEN_HEIGHT; ++iy) {
-			mfloat_t uv[VEC2_SIZE];
-			uv[0] = ((mfloat_t)ix) / ((mfloat_t)SCREEN_WIDTH);
-			uv[1] = ((mfloat_t)iy) / ((mfloat_t)SCREEN_HEIGHT);
+			double uv[VEC2_SIZE];
+			uv[0] = ((double)ix) / ((double)SCREEN_WIDTH);
+			uv[1] = ((double)iy) / ((double)SCREEN_HEIGHT);
 
 			struct Ray ray = camera_to_ray(uv, aspect, camera);
 			// struct Rayhit hit = trace(ray, 255);
+
+			printf("ray.rd_z = %f\n", ray.rd[2]);
 
 			// uint8_t r = hit.steps;
 			// uint8_t g = hit.steps;
 			// uint8_t b = hit.steps;
 
-			// uint8_t r = (uint8_t)(ray.rd[0] * 255.0);
-			// uint8_t g = (uint8_t)(ray.rd[1] * 255.0);
-			// uint8_t b = (uint8_t)(ray.rd[2] * 255.0);
+			uint8_t r = (uint8_t)(ray.rd[0] * 255.0);
+			uint8_t g = (uint8_t)(ray.rd[1] * 255.0);
+			uint8_t b = (uint8_t)(ray.rd[2] * 255.0);
 
-			uint8_t r = (uint8_t)(uv[0] * 255.0);
-			uint8_t g = (uint8_t)(uv[1] * 255.0);
-			uint8_t b = 0;
+			// uint8_t r = (uint8_t)(uv[0] * 255.0);
+			// uint8_t g = (uint8_t)(uv[1] * 255.0);
+			// uint8_t b = 0;
 			setPixel(ix, iy, r, g, b);
 		}
 	}
 
-	flushScreen();
+	// flushScreen();
 
 	deleteScreen();
 	return 0;

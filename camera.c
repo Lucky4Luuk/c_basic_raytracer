@@ -1,6 +1,6 @@
 #include "camera.h"
 
-struct Ray camera_to_ray(mfloat_t* uv, mfloat_t aspect, struct Camera camera) {
+struct Ray camera_to_ray(double* uv, double aspect, struct Camera camera) {
     /*
     float imageAspectRatio = imageWidth / (float)imageHeight; // assuming width > height
     float Px = (2 * ((x + 0.5) / imageWidth) - 1) * tan(fov / 2 * M_PI / 180) * imageAspectRatio;
@@ -10,12 +10,12 @@ struct Ray camera_to_ray(mfloat_t* uv, mfloat_t aspect, struct Camera camera) {
     rayDirection = normalize(rayDirection); // it's a direction so don't forget to normalize
     */
 
-    mfloat_t adjusted_uv[VEC2_SIZE];
+    double adjusted_uv[VEC2_SIZE];
     adjusted_uv[0] = uv[0] * 2.0 - 1.0;
     adjusted_uv[1] = 1.0 - uv[1] * 2.0;
 
-    mfloat_t px = adjusted_uv[0] * tan(to_radians(camera.fov)) * aspect;
-    mfloat_t py = adjusted_uv[1] * tan(to_radians(camera.fov));
+    double px = adjusted_uv[0] * tan(to_radians(camera.fov)) * aspect;
+    double py = adjusted_uv[1] * tan(to_radians(camera.fov));
 
     struct Ray ray;
     ray.ro[0] = camera.pos[0];

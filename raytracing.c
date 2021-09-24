@@ -1,16 +1,21 @@
 #include "raytracing.h"
 
-const mfloat_t EPSILON = 0.01;
+const double EPSILON = 0.01;
 
 struct Rayhit trace(struct Ray ray, int max_steps) {
 	struct Rayhit hit;
 	hit.hit = false;
 	hit.steps = 0;
 
-	mfloat_t pos[VEC3_SIZE];
+	double pos[VEC3_SIZE];
 	pos[0] = ray.ro[0];
 	pos[1] = ray.ro[1];
 	pos[2] = ray.ro[2];
+
+	double dir[VEC3_SIZE];
+	dir[0] = ray.rd[0];
+	dir[1] = ray.rd[1];
+	dir[2] = ray.rd[2];
 
 	for (int step = 0; step < max_steps; ++step) {
 		struct SceneInfo map_info = map(pos);
@@ -22,7 +27,9 @@ struct Rayhit trace(struct Ray ray, int max_steps) {
 			hit.pos[2] = pos[2];
 			break;
 		}
-		vec3_add(pos, pos, vec3_multiply_f(ray.rd, ray.rd, map_info.distance));
+		double tmp[VEC3_SIZE];
+		vec3_multiply_f(tmp, dir, map_info.distance);
+		vec3_add(pos, pos, tmp);
 		hit.steps = step; //I think copying the value of step is cheaper than incrementing the value of hit.steps but it really doesn't matter
 	}
 

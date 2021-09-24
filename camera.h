@@ -5,12 +5,12 @@
 #include "mathc.h"
 
 struct Camera {
-    mfloat_t pos[VEC3_SIZE];
-    mfloat_t dir[VEC3_SIZE];
+    double pos[VEC3_SIZE];
+    double dir[VEC3_SIZE];
 
-    mfloat_t fov;
+    double fov;
 };
 
-struct Ray camera_to_ray(mfloat_t* uv, mfloat_t aspect, struct Camera camera);
+struct Ray camera_to_ray(double* uv, double aspect, struct Camera camera);
 
 #endif

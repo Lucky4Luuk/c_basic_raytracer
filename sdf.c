@@ -1,5 +1,5 @@
 #include "sdf.h"
 
-mfloat_t sdfSphere(mfloat_t* pos, mfloat_t radius) {
+double sdfSphere(double* pos, double radius) {
 	return vec3_length(pos) - radius;
 }

@@ -5,9 +5,9 @@
 #include "sdf.h"
 
 struct SceneInfo {
-	mfloat_t distance;
+	double distance;
 };
 
-struct SceneInfo map(mfloat_t* pos);
+struct SceneInfo map(double* pos);
 
 #endif

@@ -3,6 +3,6 @@
 
 #include "mathc.h"
 
-mfloat_t sdfSphere(mfloat_t* pos, mfloat_t radius);
+double sdfSphere(double* pos, double radius);
 
 #endif
