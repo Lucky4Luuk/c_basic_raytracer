@@ -26,8 +26,8 @@ struct Ray camera_to_ray(double* uv, double aspect, struct Camera camera) {
     ray.rd[1] = py;
     ray.rd[2] = 1.0;
 
-    // vec3_subtract(ray.rd, ray.rd, camera.pos);
-    // vec3_normalize(ray.rd, ray.rd);
+    vec3_subtract(ray.rd, ray.rd, camera.pos);
+    vec3_normalize(ray.rd, ray.rd);
 
     return ray;
 }

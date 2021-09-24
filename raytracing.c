@@ -1,6 +1,6 @@
 #include "raytracing.h"
 
-const double EPSILON = 0.01;
+const double EPSILON = 0.1;
 
 struct Rayhit trace(struct Ray ray, int max_steps) {
 	struct Rayhit hit;

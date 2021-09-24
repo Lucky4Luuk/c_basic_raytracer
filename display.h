@@ -71,7 +71,7 @@ void flushScreen() {
 		uint8_t r = SCREEN_BUF[i  ];
 		uint8_t g = SCREEN_BUF[i+1];
 		uint8_t b = SCREEN_BUF[i+2];
-		printf("\x1b[38;2;%d;%d;%dmX\x1b[0m", r,g,b);
+		printf("\x1b[38;2;%d;%d;%dm%c\x1b[0m", r,g,b, (char)219u);
 	}
 }
 
