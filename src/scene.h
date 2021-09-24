@@ -1,7 +1,7 @@
 #ifndef _INCLUDE_SCENE_H_
 #define _INCLUDE_SCENE_H_
 
-#include "mathc.h"
+#include "lib/mathc.h"
 #include "sdf.h"
 
 struct SceneInfo {

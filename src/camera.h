@@ -2,7 +2,7 @@
 #define _INCLUDE_CAMERA_H_
 
 #include "raytracing.h"
-#include "mathc.h"
+#include "lib/mathc.h"
 
 struct Camera {
     double pos[VEC3_SIZE];

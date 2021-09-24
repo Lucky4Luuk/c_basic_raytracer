@@ -1,7 +1,7 @@
 #ifndef _INCLUDE_RAYTRACING_H_
 #define _INCLUDE_RAYTRACING_H_
 
-#include "mathc.h"
+#include "lib/mathc.h"
 #include "scene.h"
 
 struct Ray {

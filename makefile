@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-std=c99
 
-CFILES = $(wildcard *.c)
+CFILES = $(wildcard src/*.c) $(wildcard src/*/*.c)
 OBJ = $(CFILES:.c=.o)
 ODIR = obj
 
