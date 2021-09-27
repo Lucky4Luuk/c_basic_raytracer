@@ -7,7 +7,9 @@
 #include "display.h"
 
 #include "camera.h"
+#include "scene.h"
 #include "raytracing.h"
+#include "lighting.h"
 
 const double FONT_ASPECT_RATIO = 0.5;
 
@@ -34,15 +36,29 @@ int main() {
 			uv[1] = ((double)iy) / ((double)SCREEN_HEIGHT);
 
 			struct Ray ray = camera_to_ray(uv, aspect, camera);
+
 			struct Rayhit hit = trace(ray, 255);
 
-			uint8_t r = hit.steps;
-			uint8_t g = hit.steps;
-			uint8_t b = hit.steps;
+			double albedo[VEC3_SIZE] = {1.0, 1.0, 1.0};
+			if (hit.hit) {
+				double light[VEC3_SIZE] = { 1.0, 1.0, -1.0 };
+				vec3_normalize(light, light);
+				double normal[VEC3_SIZE];
+				get_normal(normal, hit.pos);
+				shade_point(albedo, light, normal, albedo);
+			} else {
+				albedo[0] = 0;
+				albedo[1] = 0;
+				albedo[2] = 0;
+			}
 
-			// uint8_t r = (uint8_t)(ray.rd[0] * 255.0);
-			// uint8_t g = (uint8_t)(ray.rd[1] * 255.0);
-			// uint8_t b = (uint8_t)(ray.rd[2] * 255.0);
+			uint8_t r = (uint8_t)(albedo[0] * 255.0);
+			uint8_t g = (uint8_t)(albedo[1] * 255.0);
+			uint8_t b = (uint8_t)(albedo[2] * 255.0);
+
+			// uint8_t r = hit.steps;
+			// uint8_t g = hit.steps;
+			// uint8_t b = hit.steps;
 
 			// uint8_t r = (uint8_t)(uv[0] * 255.0);
 			// uint8_t g = (uint8_t)(uv[1] * 255.0);

@@ -10,4 +10,6 @@ struct SceneInfo {
 
 struct SceneInfo map(double* pos);
 
+void get_normal(double* result, double* pos);
+
 #endif
