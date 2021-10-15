@@ -3,6 +3,9 @@
 #define MATHC_USE_INT32
 #define MATHC_USE_DOUBLE_FLOATING_POINT
 
+#define MAX_BOUNCES 4
+#define SAMPLES 128
+
 #include "lib/mathc.h"
 #include "display.h"
 
@@ -37,24 +40,30 @@ int main() {
 
 			struct Ray ray = camera_to_ray(uv, aspect, camera);
 
-			struct Rayhit hit = trace(ray, 255);
+			double result[VEC3_SIZE] = {0.0, 0.0, 0.0};
 
-			double albedo[VEC3_SIZE] = {1.0, 1.0, 1.0};
-			if (hit.hit) {
-				double light[VEC3_SIZE] = { 1.0, 1.0, -1.0 };
-				vec3_normalize(light, light);
-				double normal[VEC3_SIZE];
-				get_normal(normal, hit.pos);
-				shade_point(albedo, light, normal, albedo);
-			} else {
-				albedo[0] = 0;
-				albedo[1] = 0;
-				albedo[2] = 0;
+			for (int i = 0; i < SAMPLES; ++i) {
+				struct Rayhit hit = trace(ray, 255);
+
+				double tmp[VEC3_SIZE] = {0.0, 0.0, 0.0};
+				if (hit.hit) {
+					double light[VEC3_SIZE] = { 1.0, 1.0, -1.0 };
+					vec3_normalize(light, light);
+					double normal[VEC3_SIZE];
+					get_normal(normal, hit.pos);
+					shade_point(0, hit.pos, tmp, light, normal, hit.mat);
+					vec3_multiply_f(tmp, tmp, 1.0 / (float)SAMPLES);
+					vec3_add(result, result, tmp);
+				} else {
+					tmp[0] = 0.0;
+					tmp[1] = 0.0;
+					tmp[2] = 0.0;
+				}
 			}
 
-			uint8_t r = (uint8_t)(albedo[0] * 255.0);
-			uint8_t g = (uint8_t)(albedo[1] * 255.0);
-			uint8_t b = (uint8_t)(albedo[2] * 255.0);
+			uint8_t r = (uint8_t)(result[0] * 255.0);
+			uint8_t g = (uint8_t)(result[1] * 255.0);
+			uint8_t b = (uint8_t)(result[2] * 255.0);
 
 			// uint8_t r = hit.steps;
 			// uint8_t g = hit.steps;

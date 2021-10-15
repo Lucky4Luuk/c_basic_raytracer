@@ -3,9 +3,11 @@
 
 #include "lib/mathc.h"
 #include "sdf.h"
+#include "material.h"
 
 struct SceneInfo {
 	double distance;
+	struct Material mat;
 };
 
 struct SceneInfo map(double* pos);

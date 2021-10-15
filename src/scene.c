@@ -1,12 +1,36 @@
 #include "scene.h"
 
 struct SceneInfo map(double* pos) {
+	double pos_copy[VEC3_SIZE] = {pos[0], pos[1], pos[2]};
+
 	//TMP: Hardcoded test scene
 	//TODO: Create scene from main.c with functions
-	double d = sdfSphere(pos, 1.0);
+	double d0 = sdfSphere(pos_copy, 1.0);
+	struct Material m0;
+	m0.albedo[0] = 1.0;
+	m0.albedo[1] = 1.0;
+	m0.albedo[2] = 1.0;
+	m0.emissive = 0.0;
+
+	double offset[VEC3_SIZE] = {1.0, 1.0, 2.0};
+	vec3_subtract(pos_copy, pos_copy, offset);
+	double d1 = sdfSphere(pos_copy, 1.0);
+	struct Material m1;
+	m1.albedo[0] = 1.0;
+	m1.albedo[1] = 1.0;
+	m1.albedo[2] = 1.0;
+	m1.emissive = 5.0;
 
 	struct SceneInfo si;
-	si.distance = d;
+	// si.distance = d0;
+
+	if (d0 < d1) {
+		si.distance = d0;
+		si.mat = m0;
+	} else {
+		si.distance = d1;
+		si.mat = m1;
+	}
 
 	return si;
 }

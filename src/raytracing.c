@@ -30,6 +30,7 @@ struct Rayhit trace(struct Ray ray, int max_steps) {
 			hit.pos[0] = pos[0];
 			hit.pos[1] = pos[1];
 			hit.pos[2] = pos[2];
+			hit.mat = map_info.mat;
 			break;
 		}
 		vec3_multiply_f(tmp, dir, map_info.distance);
